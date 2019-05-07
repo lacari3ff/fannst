@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Create your Fannst-Account</title>
+        <% include ../head/main-default-head.html %>
+        <link rel="stylesheet" type="text/css" href="/style/main/register.css">
+    </head>
+    <body>
+        <main>
+            <div class="register singleWindow">
+                <form onsubmit="return false" id="register-form" class="register-form">
+                    <span>
+                        <div class="register-top">
+                            <img class="top-icon-small" type="image/png" src="/images/brand/name-127x25.png">
+                            <h1 class="title">Create your Fannst-account</h1>
+                            <h4 class="subtitle">Continue to <span id="url-redirect-service"></span></h4>
+                        </div>
+                        <div class="register-sec1">
+                            <div class="register-input-inline">
+                                <span class="input-inline">
+                                    <input type="text" max="256" placeholder="" id="user_first">
+                                    <div>Firstname</div>
+                                </span>
+                                <span class="input-inline">
+                                    <input type="text" max="256" placeholder="" id="user_last">
+                                    <div>Lastname</div>
+                                </span>
+                            </div>
+                            <div class="input">
+                                <input type="text" max="256" placeholder="" id="user_email">
+                                <div>E-Mail</div>
+                            </div>
+                            <p class="comment">You can use letters, numbers and dots.</p>
+                            <div class="input">
+                                <input type="text" max="256" placeholder="" id="user_uid">
+                                <div>Username</div>
+                            </div>
+                            <div class="register-input-inline">
+                                <span class="input-inline">
+                                    <input type="password" max="256" placeholder="" id="user_pass">
+                                    <div>Password</div>
+                                </span>
+                                <span class="input-inline">
+                                    <input type="password" max="256" placeholder="" id="user_pass_co">
+                                    <div>Confirm</div>
+                                </span>
+                            </div>
+                            <br>
+                            <div class="register-button-inline">
+                                <button class="button-text">Or just sign in</button>
+                                <button class="button">Next</button>
+                            </div>
+                        </div>
+                        <div class="register-sec1">
+                            <div class="input">
+                                <input type="text" max="256" placeholder="" id="user_uid">
+                                <div>Telefoonnummer (optioneel)</div>
+                            </div>
+                            <br>
+                            <div class="input">
+                                <input type="text" max="256" placeholder="" id="user_uid">
+                                <div>Telefoonnummer (optioneel)</div>
+                            </div>
+                        </div>
+                    </span>
+                    <span class="desktopEnabled">
+                        <img type="image/png" src="/images/main/register/register-banner.png">
+                        <p class="imageComment">One account, all products from Fannst working for you.</p>
+                    </span>
+                </form>
+            </div>
+        </main>
+    </body>
+</html>

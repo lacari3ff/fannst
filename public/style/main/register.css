@@ -1,0 +1,22 @@
+.register-form > span {
+    display: inline-table;
+    vertical-align: middle;
+}
+
+.register-form > span:nth-child(1) {
+    text-align: left;
+    min-width: 410px;
+}
+
+.register-form > span:nth-child(2) {
+    margin-top: 40px;
+    max-width: 200px;
+}
+
+.register-button-inline {
+    width: 390px;
+}
+
+.register-button-inline > button:nth-child(2) {
+    float: right;
+}

@@ -1,0 +1,31 @@
+{
+  "name": "fannst",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "multer": "^1.4.1",
+    "sharp": "^0.22.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  },
+  "scripts": {
+    "test": "run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lacari3ff/fannst.git"
+  },
+  "author": "Luke Rieff",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lacari3ff/fannst/issues"
+  },
+  "homepage": "https://github.com/lacari3ff/fannst#readme"
+}

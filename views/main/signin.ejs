@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Create your Fannst-Account</title>
+        <% include ../head/main-default-head.html %>
+        <link rel="stylesheet" type="text/css" href="/style/main/login.css">
+        <script src="/js/main/login.js" defer></script>
+    </head>
+    <body>
+        <main>
+            <div class="login singleWindow">
+                <form onsubmit="return false" id="login-form" class="login-form">
+                    <div class="login-top">
+                        <img class="top-icon-small" type="image/png" src="/images/brand/name-127x25.png">
+                        <h1 class="title">Sign in</h1>
+                        <h4 class="subtitle">Use your Fannst-account<span id="url-redirect-service"></span></h4>
+                    </div>
+                    <div class="login-sec1" id="login-sec1">
+                        <div class="input">
+                            <input class="input-in" type="text" max="256" required placeholder="" id="user">
+                            <div>E-Mail, username or phone number</div>
+                        </div>
+                        <br><br>
+                        <a href="/account/reset-password">Forgot password</a>
+                        <p class="information">Not your computer? Use icognito to sign in privately.</p>
+                        <div class="login-button-inline">
+                            <a href="/signup" class="button-text">Create account</a>
+                            <button type="button" class="button" onclick="sec1_finish()">Next</button>
+                        </div>
+                    </div>
+                    <div class="login-sec2" id="login-sec2" style="display:none">
+                        <center>
+                            <button type="button" class="login-sec2-user">
+                                <span>
+                                    <img type="image/png" src="/images/main/login/default-pf.png">
+                                </span>
+                                <span id="login-sec2-user-email"></span>
+                            </button>
+                        </center>
+                        <div class="input">
+                            <input class="input-in" type="password" max="256" required placeholder="" id="user_pass">
+                            <div>Enter your password</div>
+                        </div>
+                        <div class="login-button-inline">
+                            <a href="/signup" class="button-text">Create account</a>
+                            <button type="button" class="button" onclick="sec2_finish()">Sign in</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <% include ../head/loader.html %>
+        </main>
+    </body>
+</html>

@@ -47,18 +47,10 @@ function sec2_finish() {
         //Sends data
         var http = new XMLHttpRequest();
         http.open("POST", "/signup", true);
-        http.setRequestHeader('Content-Type', 'application/json');
-        http.send(JSON.stringify({
-            user_first: user_first_value,
-            user_last: user_last_value,
-            user_email: user_email_value,
-            user_uid: user_uid_value,
-            user_pass: user_pass_value,
-            user_phone: user_phone_value,
-            user_rest_email: user_rest_email_value,
-            user_bdate: user_bdate_value,
-            user_gender: user_gender_value
-        }));
+        http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+        http.send(
+            'user_first='+user_first_value+'&&user_last='+user_last_value+'&&user_email='+user_email_value+'&&user_uid='+user_uid_value+'&&user_pass='+user_pass_value+'&&user_phone='+user_phone_value+'&&user_rest_email='+user_rest_email_value+'&&user_bdate='+user_bdate_value+'&&user_gender='+user_gender_value
+        );
         http.onload = function() {
             if(http.readyState == 4 && http.status == 200) {
                 var data = JSON.parse(http.responseText);

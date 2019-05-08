@@ -5,6 +5,7 @@
         <title>Create your Fannst-Account</title>
         <% include ../head/main-default-head.html %>
         <link rel="stylesheet" type="text/css" href="/style/main/register.css">
+        <script src="/js/main/register.js" defer></script>
     </head>
     <body>
         <main>
@@ -16,51 +17,69 @@
                             <h1 class="title">Create your Fannst-account</h1>
                             <h4 class="subtitle">Continue to <span id="url-redirect-service"></span></h4>
                         </div>
-                        <div class="register-sec1">
+                        <div class="register-sec1" id="register-sec1">
                             <div class="register-input-inline">
                                 <span class="input-inline">
-                                    <input type="text" max="256" placeholder="" id="user_first">
+                                    <input class="input-inline-in input-inline-in" type="text" required max="256" placeholder="" id="user_first">
                                     <div>Firstname</div>
                                 </span>
                                 <span class="input-inline">
-                                    <input type="text" max="256" placeholder="" id="user_last">
+                                    <input class="input-inline-in" type="text" max="256" required placeholder="" id="user_last">
                                     <div>Lastname</div>
                                 </span>
                             </div>
                             <div class="input">
-                                <input type="text" max="256" placeholder="" id="user_email">
+                                <input class="input-in" type="text" max="256" required placeholder="" id="user_email">
                                 <div>E-Mail</div>
                             </div>
                             <p class="comment">You can use letters, numbers and dots.</p>
                             <div class="input">
-                                <input type="text" max="256" placeholder="" id="user_uid">
+                                <input class="input-in" type="text" max="256" required placeholder="" id="user_uid">
                                 <div>Username</div>
                             </div>
                             <div class="register-input-inline">
                                 <span class="input-inline">
-                                    <input type="password" max="256" placeholder="" id="user_pass">
+                                    <input class="input-inline-in" type="password" max="256" required placeholder="" id="user_pass">
                                     <div>Password</div>
                                 </span>
                                 <span class="input-inline">
-                                    <input type="password" max="256" placeholder="" id="user_pass_co">
+                                    <input class="input-inline-in" type="password" max="256" required placeholder="" id="user_pass_co">
                                     <div>Confirm</div>
                                 </span>
                             </div>
                             <br>
                             <div class="register-button-inline">
-                                <button class="button-text">Or just sign in</button>
-                                <button class="button">Next</button>
+                                <button type="button" class="button-text">Or just sign in</button>
+                                <button class="button" type="button" onclick="sec1_finish()">Next</button>
                             </div>
                         </div>
-                        <div class="register-sec1">
+                        <div class="register-sec2" id="register-sec2" style="display:none">
                             <div class="input">
-                                <input type="text" max="256" placeholder="" id="user_uid">
+                                <input class="input-in" type="text" max="256" required placeholder="" id="user_phone">
                                 <div>Telefoonnummer (optioneel)</div>
                             </div>
-                            <br>
+                            <p class="comment">Your phone will be used for future account security features.</p>
                             <div class="input">
-                                <input type="text" max="256" placeholder="" id="user_uid">
-                                <div>Telefoonnummer (optioneel)</div>
+                                <input class="input-in" type="text" max="256" required placeholder="" id="user_rest_email">
+                                <div>E-Mail for backup (optioneel)</div>
+                            </div>
+                            <p class="comment">We use this e-mail to protect your account.</p>
+                            <div class="register-input-inline">
+                                <span class="input-inline">
+                                    <input class="input-inline-in" type="date" max="256" required placeholder="" id="user_bdate">
+                                </span>
+                                <span class="input-inline">
+                                    <select id="user_gender">
+                                        <option value="m">Male</option>
+                                        <option value="f">Female</option>
+                                        <option value="n">I prefer not to tell</option>
+                                    </select>
+                                </span>
+                            </div>
+                            <br>
+                            <div class="register-button-inline">
+                                <button type="button" class="button" onclick="sec2_back()">Go back</button>
+                                <button type="button" class="button" onclick="sec2_finish()">Finish</button>
                             </div>
                         </div>
                     </span>

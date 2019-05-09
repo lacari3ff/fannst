@@ -6,7 +6,11 @@ const expressHelper = require('../help/expressHelper.js');
 const Router = express.Router();
 // Controllers
 const userController = require('../controllers/userController.js');
+const searchController = require('../controllers/searchController.js');
 // Create the routes
+Router.get('/', function(req, res) {
+    searchController.index(req, res);
+})
 Router.get('/signup', function(req, res) {
     res.render('main/signup.ejs');
 })

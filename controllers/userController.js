@@ -1,6 +1,7 @@
 // Includes
 const mongodb = require('mongodb').MongoClient;
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 // Models
 const User = require('../models/users/userModel.js');
 const Log = require('../models/users/logModel.js');
@@ -156,32 +157,43 @@ module.exports.signIn = function(req, res) {
             } else {
                 dbo = db.db('fannstdb');
 
-                User.fetchByUser(dbo, user, function(resdb) {
+                User.fetchByUser(dbo, userObject.user, function(resdb) {
                     if(resdb) {
-                        var logObject = {
-                            log_hid: resdb.user_hid,
-                            log_key: crypto.randomBytes(64).toString('hex').substring(0, 64),
-                            log_ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
-                            log_date: new Date()
-                        };
-                        var log = new Log(logObject);
-                        log.save(dbo, function(resdb) {
-                            if(resdb) {
-                                res.cookie('key',
-                                    logObject.log_key,
-                                    {
-                                        maxAge: 99999999999999
-                                    }
-                                );
-                                res.cookie('hid',
-                                    logObject.log_hid,
-                                    {
-                                        maxAge: 99999999999999
-                                    }
-                                );
-                                res.status(200).send({status: true});
-                            } else {
+                        bcrypt.compare(userObject.user_pass, resdb.user_pass, function(err, match) {
+                            if(err) {
                                 res.status(200).send({status: false, err: 500});
+                            } else {
+                                console.log(match)
+                                if(match) {
+                                    var logObject = {
+                                        log_hid: resdb.user_hid,
+                                        log_key: crypto.randomBytes(64).toString('hex').substring(0, 64),
+                                        log_ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+                                        log_date: new Date()
+                                    };
+                                    var log = new Log(logObject);
+                                    log.save(dbo, function(resdb) {
+                                        if(resdb) {
+                                            res.cookie('csrftoken',
+                                                logObject.log_key,
+                                                {
+                                                    maxAge: 99999999999999
+                                                }
+                                            );
+                                            res.cookie('hid',
+                                                logObject.log_hid,
+                                                {
+                                                    maxAge: 99999999999999
+                                                }
+                                            );
+                                            res.status(200).send({status: true});
+                                        } else {
+                                            res.status(200).send({status: false, err: 500});
+                                        }
+                                    })
+                                } else {
+                                    res.status(200).send({status: false, err: 401});
+                                }
                             }
                         })
                     } else {
@@ -193,4 +205,57 @@ module.exports.signIn = function(req, res) {
     } else {
         res.status(200).send({status: false, err: 408});
     }
+}
+module.exports.userCheck = function(req, res, cb) {
+    // Gets data
+    var logObject = {
+        log_key: req.cookies.csrftoken,
+        log_hid: req.cookies.hid
+    };
+    //Checks if data is set
+    if(
+        logObject.log_key!=undefined&&
+        logObject.log_hid!=undefined
+    ) {
+        mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
+            if(err) {
+                res.status(200).send({status: false, err: 500});
+            } else {
+                dbo = db.db('fannstdb');
+
+                Log.fetchLog(dbo, logObject, function(log) {
+                    if(log) {
+                        User.fetchByHid(dbo, log.log_hid, function(user) {
+                            if(user) {
+                                cb(user);
+                            } else {
+                                resetCookies(res);
+                                cb(false);
+                            }
+                        })
+                    } else {
+                        resetCookies(res);
+                        cb(false);
+                    }
+                })
+            }
+        })
+    } else {
+        cb(false)
+    }
+}
+
+function resetCookies(res) {
+    res.cookie('csrftoken',
+        null,
+        {
+            maxAge: 0
+        }
+    );
+    res.cookie('hid',
+        null,
+        {
+            maxAge: 0
+        }
+    );
 }

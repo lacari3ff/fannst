@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Fannst Search Engine</title>
+        <% include ../head/main-default-head.html %>
+        <link rel="stylesheet" type="text/css" href="/style/main/index.css">
+        <script src="/js/main/index.js" defer></script>
+    </head>
+    <body>
+        <nav>
+            <% include ../head/profile-head.ejs %>
+        </nav>
+        <main>
+            <div class="search">
+                <div class="search-doodle">
+                    <img type="image/png" src="/images/brand/doodles/doodle01.png">
+                </div>
+                <form>
+                    <div class="search-input">
+                        <span>
+                            <input type="text" id="search_input">
+                        </span>
+                        <span>
+                            <button type="button">
+                                <img type="image/png" src="/images/main/search/voice-icon.png">
+                            </button>
+                        </span>
+                    </div>
+                    <div class="search-buttons">
+                        <span>
+                            <button>Fannst search</button>
+                        </span>
+                        <span>
+                            <button type="button">Support</button>
+                        </span>
+                    </div>
+                </form>
+                <div class="privacy-notif">
+                    <span>
+                        <img type="image/png" src="/images/main/search/privacy-icon.png">
+                    </span>
+                    <span>Privacy and opinion matters to us. <a href="/account/privacy">Customize Fannst to match.</a></span>
+                </div>
+            </div>
+            <% include ../head/loader.html %>
+        </main>
+    </body>
+</html>

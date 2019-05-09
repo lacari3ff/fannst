@@ -8,6 +8,14 @@ module.exports = class Log {
         this.log_date = logObject.log_date;
 
     }; static save(dbo, cb) {
-        dbo
+        dbo.collection('users_logged').insertOne(this, function(err, resdb) {
+            if(err) {
+                cb(false);
+            } else if(resdb == null) {
+                cb(false);
+            } else {
+                cb(true);
+            }
+        })
     }
 }

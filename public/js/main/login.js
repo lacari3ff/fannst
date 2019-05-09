@@ -37,6 +37,10 @@ function sec1_finish() {
     }
 }
 
+function sec2_finish() {
+    
+}
+
 function check_user_user() {
     var user_user_value = document.getElementById('user').value;
     user.classList.remove('input-in-err');

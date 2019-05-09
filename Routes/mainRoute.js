@@ -19,5 +19,8 @@ Router.post('/signup', function(req, res) {
 Router.post('/signin-validate', function(req, res) {
     userController.signinValidate(req, res);
 })
+Router.post('/signin', function(req, res) {
+    userController.signIn(req, res);
+})
 // Exports the Router
 module.exports = Router;

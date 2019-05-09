@@ -3,6 +3,7 @@ const mongodb = require('mongodb').MongoClient;
 const bcrypt = require('bcryptjs');
 // Models
 const User = require('../models/users/userModel.js');
+const Log = require('../models/users/logModel.js');
 // Helpers
 const encryptionHelper = require('../help/encryptionHelper.js');
 // RegExp
@@ -128,6 +129,61 @@ module.exports.signinValidate = function(req, res) {
                         res.status(200).send({status: true, user: {
                             user_email: resdb.user_email
                         }})
+                    } else {
+                        res.status(200).send({status: false, err: 404});
+                    }
+                })
+            }
+        })
+    } else {
+        res.status(200).send({status: false, err: 408});
+    }
+}
+module.exports.signIn = function(req, res) {
+    // Gets checkUserData
+    var userObject = {
+        user: req.body.user,
+        user_pass: req.body.user_pass
+    };
+    //Checks if date is set
+    if(
+        userObject.user!=undefined&&
+        userObject.user_pass!=undefined
+    ) {
+        mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
+            if(err) {
+                res.status(200).send({status: false, err: 500});
+            } else {
+                dbo = db.db('fannstdb');
+
+                User.fetchByUser(dbo, user, function(resdb) {
+                    if(resdb) {
+                        var logObject = {
+                            log_hid: resdb.user_hid,
+                            log_key: crypto.randomBytes(64).toString('hex').substring(0, 64),
+                            log_ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+                            log_date: new Date()
+                        };
+                        var log = new Log(logObject);
+                        log.save(dbo, function(resdb) {
+                            if(resdb) {
+                                res.cookie('key',
+                                    logObject.log_key,
+                                    {
+                                        maxAge: 99999999999999
+                                    }
+                                );
+                                res.cookie('hid',
+                                    logObject.log_hid,
+                                    {
+                                        maxAge: 99999999999999
+                                    }
+                                );
+                                res.status(200).send({status: true});
+                            } else {
+                                res.status(200).send({status: false, err: 500});
+                            }
+                        })
                     } else {
                         res.status(200).send({status: false, err: 404});
                     }

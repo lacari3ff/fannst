@@ -36,48 +36,6 @@ a {
     animation: loader .5s infinite;
 }
 
-.nav-head {
-    position: fixed;
-    top: 0;
-    right: 0;
-    margin: 8px;
-}
-
-.nav-head > span {
-    display: inline-table;
-    vertical-align: middle;
-}
-
-.nav-head > span > button {
-    border: none;
-    background: none;
-    cursor: pointer;
-}
-
-.nav-head > span:nth-child(1) {
-    padding-bottom: 6px;
-}
-
-.nav-head > span:nth-child(1) > a {
-    font-size: 13px;
-    font-weight: 100;
-    color: #050505;
-}
-
-.nav-head > span:nth-child(1) > a:hover {
-    color: #5F6368;
-    text-decoration: underline;
-}
-
-.nav-head > span:nth-child(2) > button > img {
-    width: 16px;
-}
-
-.nav-head > span:nth-child(3) > button > img {
-    width: 38px;
-    border-radius: 1000px;
-}
-
 @keyframes loader {
     0% {
         transform: rotate(0deg);

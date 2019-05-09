@@ -3,13 +3,63 @@
         <a href="/search?filter=images">Images</a>
     </span>
     <span>
-        <button>
+        <button onclick="apps_toggle()">
             <img type="image/png" src="/images/main/nav/apps-icon.png">
         </button>
     </span>
-    <span>
-        <button>
-            <img type="image/jpg" src="/images/main/nav/default-pf.jpg">
-        </button>
-    </span>
+    <% if(rtype == 1) { %>
+        <span>
+            <button onclick="profile_toggle()">
+                <img type="image/jpg" src="/images/main/nav/default-pf-45x45.jpg">
+            </button>
+        </span>
+    <% } else { %>
+        <span>
+            <a href="/signin">Sign in</a>
+        </span>
+    <% } %>
+</div>
+<div id="nav-profile-dropdown" class="nav-profile-dropdown" style="display: none">
+    <% if(rtype == 1) { %>
+        <div class="nav-profile-dropdown-top">
+            <span>
+                <button>
+                    <img type="image/jpg" src="/images/main/nav/default-pf-98x98.jpg">
+                </button>
+            </span>
+            <span>
+                <h4><%= user.user_first + ' ' + user.user_last %></h4>
+                <h5><%= user.user_email %></h5>
+                <a href="/privacy">Privacy</a>
+                <div>
+                    <a href="/account/start">Fannst-account</a>
+                </div>
+            </span>
+        </div>
+        <div class="nav-profile-dropdown-bottom">
+            <a href="/logout?service=search">Logout</a>
+        </div>
+    <% } %>
+</div>
+<div class="nav-apps-dropdown" id="nav-apps-dropdown" style="display: none">
+    <div class="nav-apps-dropdown-apps">
+        <figure>
+            <a href="/">
+                <img type="image/png" src="/images/main/apps/search-icon.png">
+            </a>
+        </figure>
+        <figure>
+            <a href="/account/start">
+                <img type="image/png" src="/images/main/apps/account-icon.png">
+            </a>
+        </figure>
+        <figure>
+            <a href="/to-do/start">
+                <img type="image/png" src="/images/main/apps/toDo-icon.png">
+            </a>
+        </figure>
+    </div>
+    <div class="nav-apps-dropdown-bottom">
+        <a href="/about/products">More</a>
+    </div>
 </div>

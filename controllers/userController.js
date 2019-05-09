@@ -2,6 +2,7 @@
 const mongodb = require('mongodb').MongoClient;
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
+const url = require('url');
 // Models
 const User = require('../models/users/userModel.js');
 const Log = require('../models/users/logModel.js');
@@ -244,7 +245,21 @@ module.exports.userCheck = function(req, res, cb) {
         cb(false)
     }
 }
-
+module.exports.logout = function(req, res) {
+    var urlr = url.parse(req.url, true);
+    var query = urlr.query;
+    if(query.service != undefined) {
+        if(query.service == 'search') {
+            var redirect = '/';
+        } else {
+            var redirect = '/'+query.service+'/'+query.url;
+        }
+    } else {
+        var redirect = '/'+query.url;
+    }
+    resetCookies(res);
+    res.redirect(307, redirect);
+}
 function resetCookies(res) {
     res.cookie('csrftoken',
         null,

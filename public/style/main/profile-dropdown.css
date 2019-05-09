@@ -1,0 +1,207 @@
+.nav-head {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 8px;
+}
+
+.nav-head > span {
+    display: inline-table;
+    vertical-align: middle;
+}
+
+.nav-head > span > button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.nav-head > span:nth-child(1) {
+    padding-bottom: 6px;
+}
+
+.nav-head > span:nth-child(1) > a {
+    font-size: 13px;
+    font-weight: 100;
+    color: #050505;
+}
+
+.nav-head > span:nth-child(1) > a:hover {
+    color: #5F6368;
+    text-decoration: underline;
+}
+
+.nav-head > span:nth-child(2) > button > img {
+    width: 16px;
+}
+
+.nav-head > span:nth-child(3) > button > img {
+    width: 38px;
+    border-radius: 1000px;
+}
+
+.nav-head > span:nth-child(3) > a {
+    font-family: sans-serif;
+    cursor: pointer;
+    padding: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border: none;
+    border-radius: 2px;
+    background-color: #4F92FA;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    transition: .1s;
+}
+
+.nav-head > span:nth-child(3) > a:active {
+    transition: .2s;
+    background-color: #3868B3;
+}
+
+.nav-profile-dropdown {
+    position: fixed;
+    right: 16px;
+    top: 60px;
+    background-color: #fff;
+    border-radius: 2px;
+    border: 1px solid #CCCCCC;
+    sbox-shadow: 2px 2px 7px #00000022;
+}
+
+.nav-profile-dropdown-top {
+    margin: 12px;
+    margin-bottom: 18px;
+}
+
+.nav-profile-dropdown-top > span {
+    display: inline-table;
+    vertical-align: middle;
+}
+
+.nav-profile-dropdown-top > span:nth-child(1) > button {
+    border: none;
+    background: none;
+}
+
+.nav-profile-dropdown-top > span:nth-child(1) > button > img {
+    width: 80px;
+    border-radius: 1000px;
+}
+
+.nav-profile-dropdown-top > span:nth-child(2) > h4 {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+.nav-profile-dropdown-top > span:nth-child(2) > h5 {
+    margin: 0;
+    color: #5F6368;
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: 13px;
+}
+
+.nav-profile-dropdown-top > span:nth-child(2) > a {
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+}
+
+.nav-profile-dropdown-top > span:nth-child(2) > a:hover {
+    text-decoration: underline;
+}
+
+.nav-profile-dropdown-top > span:nth-child(2) > div {
+    margin-top: 15px;
+}
+
+.nav-profile-dropdown-top > span:nth-child(2) > div > a {
+    margin-top: 20px;
+    font-family: sans-serif;
+    cursor: pointer;
+    padding: 7px;
+    border: none;
+    border-radius: 3px;
+    background-color: #4F92FA;
+    color: #fff;
+    font-size: 13px;
+    transition: .1s;
+    border: 1px solid #347CE8;
+}
+
+.nav-profile-dropdown-top > span:nth-child(2) > div > a:hover {
+    box-shadow: 0px 0px 9px #3868B3 inset;
+}
+
+.nav-profile-dropdown-top > span:nth-child(2) > div > a:active {
+    transition: .2s;
+    background-color: #3868B3;
+}
+
+.nav-profile-dropdown-bottom {
+    border-top: 1px solid #CCCCCC;
+    background-color: #F5F5F5;
+    padding: 12px;
+}
+
+.nav-profile-dropdown-bottom > a {
+    background-color: #F8F8F8;
+    padding: 5px;
+    padding-right: 13px;
+    padding-left: 13px;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    color: #5F6368;
+    font-size: 13px;
+    font-weight: 100;
+}
+
+.nav-profile-dropdown-bottom > a:hover {
+    background-color: #fff;
+    box-shadow: 0px 1px 2px #0000001c;
+}
+
+.nav-apps-dropdown {
+    position: fixed;
+    right: 16px;
+    top: 60px;
+    background-color: #fff;
+    border-radius: 2px;
+    border: 1px solid #CCCCCC;
+    max-width: 200px;
+    box-shadow: 2px 2px 7px #00000022;
+}
+
+.nav-apps-dropdown-apps {
+    margin: 16px;
+}
+
+.nav-apps-dropdown-apps > figure {
+    display: inline-table;
+    margin: 0;
+    padding: 4px;
+}
+
+.nav-apps-dropdown-apps > figure:hover {
+    box-shadow: 0px 0px 1px 1px #DDD inset;
+}
+
+.nav-apps-dropdown-apps > figure > a > img {
+    width: 60px;
+}
+
+.nav-apps-dropdown-bottom {
+    border-top: 1px solid #CCCCCC;
+    background-color: #F5F5F5;
+    padding: 12px;
+    text-align: center;
+}
+
+.nav-apps-dropdown-bottom > a {
+    font-size: 13px;
+    color: #050505;
+    font-weight: 100;
+}

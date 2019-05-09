@@ -13,6 +13,11 @@ module.exports = class user {
         this.user_gender = userObject.user_gender;
         this.user_hid = userObject.user_hid;
         this.user_cdate = userObject.user_cdate;
+        this.user_pic = 'def';
+        this.user_desc = '';
+        this.user_sett_location = 'true';
+        this.user_sett_history = 'true';
+        this.user_sett_deviceinfo = 'true';
     }; save(dbo, cb) {
         dbo.collection('users').insertOne(this, function(err, resdb) {
             if(err) {

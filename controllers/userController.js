@@ -97,11 +97,11 @@ function checkUserData(userObject) {
         return false;
     } if(!user_pass_regExp.test(userObject.user_pass)) {
         return false;
-    } if(userObject.user_rest_email!=undefined) {
+    } if(userObject.user_rest_email!='') {
         if(!user_email_regExp.test(userObject.user_rest_email)) {
             return false;
         }
-    } if(userObject.user_phone!=undefined) {
+    } if(userObject.user_phone!='') {
         if(!user_phone_regExp.test(userObject.user_phone)) {
             return false;
         }

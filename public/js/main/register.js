@@ -170,21 +170,29 @@ function check_user_last() {
 function check_user_phone() {
     var user_phone_value = document.getElementById('user_phone').value;
     user_phone.classList.remove('input-in-err');
-    if(user_phone_regExp.test(user_phone_value)) {
-        return true;
+    if(user_phone_value != '') {
+        if(user_phone_regExp.test(user_phone_value)) {
+            return true;
+        } else {
+            user_phone.classList.add('input-in-err');
+            return false;
+        }
     } else {
-        user_phone.classList.add('input-in-err');
-        return false;
+        return true;
     }
 }
 function check_user_rest_email() {
     var user_rest_email_value = document.getElementById('user_rest_email').value;
     user_rest_email.classList.remove('input-in-err');
-    if(user_email_regExp.test(user_rest_email_value)) {
-        return true;
+    if(user_rest_email_value != '') {
+        if(user_email_regExp.test(user_rest_email_value)) {
+            return true;
+        } else {
+            user_rest_email.classList.add('input-in-err');
+            return false;
+        }
     } else {
-        user_rest_email.classList.add('input-in-err');
-        return false;
+        return true;
     }
 }
 function check_user_bdate() {

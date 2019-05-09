@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Fannst-account</title>
+        <% include ../head/main-default-head.html %>
+        <link rel="stylesheet" type="text/css" href="/style/account/start.css">
+        <link rel="stylesheet" type="text/css" href="/style/main/profile-dropdown.css">
+        <script src="/js/account/start.js" defer></script>
+        <script src="/js/main/profile-dropdown.js" defer></script>
+    </head>
+    <body>
+        <nav>
+            <% include ../head/profile-head.ejs %>
+            <div class="nav-side">
+                <img type="image/png" src="/images/main/account/account-icon.png">
+                <ul>
+                    <li class="nav-side-ul-li-active">
+                        <a href="/account/start">
+                            <span>
+                                <img type="image/png" src="/images/main/account/nav/start-nav-active.png">
+                            </span>
+                            <span>Start</span>
+                        </a>
+                    </li>
+                    <li class="nav-side-ul-li-inactive">
+                        <a href="/account/start">
+                            <span>
+                                <img type="image/png" src="/images/main/account/nav/personal-nav-inactive.png">
+                            </span>
+                            <span>Personal information</span>
+                        </a>
+                    </li>
+                    <li class="nav-side-ul-li-inactive">
+                        <a href="/account/start">
+                            <span>
+                                <img type="image/png" src="/images/main/account/nav/data-nav-inactive.png">
+                            </span>
+                            <span>Data and personalize</span>
+                        </a>
+                    </li>
+                    <li class="nav-side-ul-li-inactive">
+                        <a href="/account/start">
+                            <span>
+                                <img type="image/png" src="/images/main/account/nav/security-nav-inactive.png">
+                            </span>
+                            <span>Security</span>
+                        </a>
+                    </li>
+                    <hr>
+                </ul>
+            </div>
+        </nav>
+        <main>
+            <div class="settings-section01">
+                <div class="settings-section01-title">
+                    <img type="image/jpg" src="/images/main/nav/default-pf-98x98.jpg">
+                    <h1>Welkom, <%= user.user_uid %></h1>
+                    <h4>Controll your data, privacy and security to make Fannst work better for you</h4>
+                </div>
+            </div>
+            <div class="settings-section02">
+                <% if(user.user_desc == '') { %>
+                    <figure>
+                        <span>
+                            <div>
+                                <h2>No description set</h2>
+                                <h4>Show people who you are, describe yourself and make your Fannst-account more complete.</h4>
+                            </div>
+                        </span>
+                        <span>
+                            <img type="image/png" src="/images/main/account/notifications/desc_not_set_notif.png">
+                        </span>
+                        <hr>
+                        <div>
+                            <a>Set description</a>
+                        </div>
+                    </figure>
+                <% } %>
+                <% if(user.user_phone == '') { %>
+                    <figure>
+                        <span>
+                            <div>
+                                <h2>No phone number entered</h2>
+                                <h4>Enter your phone number, and get access to future security functions.</h4>
+                            </div>
+                        </span>
+                        <span>
+                            <img type="image/png" src="/images/main/account/notifications/phone_not_entered_notif.png">
+                        </span>
+                        <hr>
+                        <div>
+                            <a>Enter number</a>
+                        </div>
+                    </figure>
+                <% } %>
+                <% if(user.user_rest_email == '') { %>
+                    <figure>
+                        <span>
+                            <div>
+                                <h2>No backup email set</h2>
+                                <h4>If you ever forget your password, or encounter security issues. A backup email will help restoring your account.</h4>
+                            </div>
+                        </span>
+                        <span>
+                            <img type="image/png" src="/images/main/account/notifications/rest_email_not_set_notif.png">
+                        </span>
+                        <hr>
+                        <div>
+                            <a>Enter number</a>
+                        </div>
+                    </figure>
+                <% } %>
+            </div>
+            <div class="settings-section03">
+                <span>
+                    <p>Only you can view your settings. Fannst has a priority to privacy and security.</p>
+                </span>
+                <span>
+                </span>
+            </div>
+            <% include ../head/loader.html %>
+        </main>
+    </body>
+</html>

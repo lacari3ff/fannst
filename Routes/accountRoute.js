@@ -2,11 +2,11 @@
 const express = require('express');
 // Setup
 const Router = express.Router();
-// App configuration
-
+// Controllers
+const accountController = require('../controllers/accountController.js');
 // Create the routes
-Router.get('/register', function(req, res) {
-    console.log('test')
+Router.get('/start', function(req, res) {
+    accountController.start(req, res);
 })
 // Exports the Router
 module.exports = Router;

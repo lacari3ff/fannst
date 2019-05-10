@@ -97,7 +97,7 @@
     color: #2076E3;
     text-decoration: none;
     font-size: inherit;
-    font-weight: 100;
+    font-weight: normal;
 }
 
 .privacy-notif > span:nth-child(2) > a:hover {

@@ -14,6 +14,9 @@ Router.get('/', function(req, res) {
 Router.get('/search', function(req, res) {
     searchController.search(req, res);
 })
+Router.get('/visit', function(req, res) {
+    searchController.visit(req, res);
+})
 Router.get('/signup', function(req, res) {
     res.render('main/signup.ejs');
 })

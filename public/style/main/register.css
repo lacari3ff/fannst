@@ -274,20 +274,20 @@
 .title {
     margin: 0px;
     font-size: 24px;
-    font-weight: 100;
+    font-weight: normal;
 }
 
 .subtitle {
     margin: 0px;
     margin-top: 8px;
     font-size: 16px;
-    font-weight: 100;
+    font-weight: normal;
 }
 
 .imageComment {
     margin: 0px;
     font-size: 14px;
-    font-weight: 100;
+    font-weight: normal;
 }
 
 /* Image styles */

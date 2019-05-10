@@ -3,6 +3,7 @@
     top: 0;
     right: 0;
     margin: 8px;
+    z-index: 10000;
 }
 
 .nav-head > span {
@@ -22,7 +23,7 @@
 
 .nav-head > span:nth-child(1) > a {
     font-size: 13px;
-    font-weight: 100;
+    font-weight: normal;
     color: #050505;
 }
 
@@ -68,6 +69,7 @@
     border-radius: 2px;
     border: 1px solid #CCCCCC;
     sbox-shadow: 2px 2px 7px #00000022;
+        z-index: 10000;
 }
 
 .nav-profile-dropdown-top {
@@ -100,13 +102,13 @@
     margin: 0;
     color: #5F6368;
     font-family: sans-serif;
-    font-weight: 100;
+    font-weight: normal;
     font-size: 13px;
 }
 
 .nav-profile-dropdown-top > span:nth-child(2) > a {
     font-family: sans-serif;
-    font-weight: 100;
+    font-weight: normal;
     font-size: 14px;
 }
 
@@ -156,7 +158,7 @@
     border-radius: 2px;
     color: #5F6368;
     font-size: 13px;
-    font-weight: 100;
+    font-weight: normal;
 }
 
 .nav-profile-dropdown-bottom > a:hover {
@@ -173,6 +175,7 @@
     border: 1px solid #CCCCCC;
     max-width: 200px;
     box-shadow: 2px 2px 7px #00000022;
+    z-index: 10000;
 }
 
 .nav-apps-dropdown-apps {
@@ -203,5 +206,5 @@
 .nav-apps-dropdown-bottom > a {
     font-size: 13px;
     color: #050505;
-    font-weight: 100;
+    font-weight: normal;
 }

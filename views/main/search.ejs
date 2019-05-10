@@ -1,11 +1,56 @@
-<ol>
-    <% results.forEach(function(result) { %>
-        <li>
-            <a href="<%= result.ste_url %>"><%= result.ste_title  %></a>
-            <div>
-                <h4><%= result.ste_url  %></h4>
-                <h4><%= result.ste_desc  %></h4>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Fannst Search: <%= param %></title>
+        <% include ../head/main-default-head.html %>
+        <link rel="stylesheet" type="text/css" href="/style/main/search.css">
+        <link rel="stylesheet" type="text/css" href="/style/main/profile-dropdown.css">
+        <script src="/js/main/profile-dropdown.js" defer></script>
+        <meta name="keywords" content="search, engine, service">
+        <meta name="copyright" content="Luke Rieff">
+        <meta name="description" content="A Google Like Search Engine, Build By Teens 'Fannst'.">
+    </head>
+    <body>
+        <nav>
+            <% include ../head/profile-head.ejs %>
+            <div class="nav-stop">
+                <div class="nav-top-c1">
+                    <span>
+                        <a href="/">
+                            <img type="image/png" src="/images/brand/doodles/doodle01.png">
+                        </a>
+                    </span>
+                    <span>
+                        <form action="/search" method="get">
+                            <div class="search-input">
+                                <span>
+                                    <input value="<%= param %>" type="text" id="search_input" name="params">
+                                </span>
+                                <span>
+                                    <button type="button">
+                                        <img type="image/png" src="/images/main/search/voice-icon.png">
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </span>
+                </div>
             </div>
-        </li>
-    <% }) %>
-</ol>
+        </nav>
+        <main class="main">
+            <ol>
+                <% results.forEach(function(result) { %>
+                    <li>
+                        <a href="/visit?url=<%= result.ste_url %>"><%= result.ste_title.substring(0, 120)  %></a>
+                        <div>
+                            <h4><%= result.ste_url  %></h4>
+                            <h4><%= result.ste_desc  %></h4>
+                        </div>
+                    </li>
+                <% }) %>
+            </ol>
+            <% include ../head/loader.html %>
+        </main>
+    </body>
+</html>

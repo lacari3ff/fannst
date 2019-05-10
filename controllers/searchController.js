@@ -33,14 +33,21 @@ module.exports.search = function(req, res) {
                     $or:
                     [
                         {
-                            site_title: {$regex: query.search_input}
+                            ste_title: {$regex: query.params.toLowerCase()}
+                        },
+                        {
+                            ste_keywds: {$regex: query.params.toLowerCase()}
+                        },
+                        {
+                            ste_desc: {$regex: query.params.toLowerCase()}
                         }
                     ]
-                })
-
-                res.render('main/search.ejs', {
-                    rtype: 1,
-                    user: user
+                }).sort({ste_srank : -1, ste_rank : -1}).limit(30).toArray(function(err, results) {
+                    res.render('main/search.ejs', {
+                        rtype: 1,
+                        user: user,
+                        results: results
+                    })
                 })
             } else {
                 res.render('main/search.ejs', {

@@ -1,0 +1,11 @@
+<ol>
+    <% results.forEach(function(result) { %>
+        <li>
+            <a href="<%= result.ste_url %>"><%= result.ste_title  %></a>
+            <div>
+                <h4><%= result.ste_url  %></h4>
+                <h4><%= result.ste_desc  %></h4>
+            </div>
+        </li>
+    <% }) %>
+</ol>

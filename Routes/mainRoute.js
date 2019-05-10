@@ -12,7 +12,7 @@ Router.get('/', function(req, res) {
     searchController.index(req, res);
 })
 Router.get('/search', function(req, res) {
-
+    searchController.search(req, res);
 })
 Router.get('/signup', function(req, res) {
     res.render('main/signup.ejs');

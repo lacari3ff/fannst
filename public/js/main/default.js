@@ -14,7 +14,13 @@ document.onreadystatechange = function() {
           var lat = pos.coords.latitude;
           var long = pos.coords.longitude;
           var coods = lat + ',' + long;
-          console.log(coods)
+
+          var http = new XMLHttpRequest();
+          http.open('POST', '/visit-dtransmit');
+          http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+          http.send(
+              'l_loc='+coods
+          );
       }
   }
 };

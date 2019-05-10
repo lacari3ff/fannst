@@ -13,13 +13,15 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.use(express.static('./public'));
 // Require the Routes
-const mainRoute = require('./routes/mainRoute.js');         // The route for the main section at /
+const mainRoute = require('./routes/mainRoute.js');             // The route for the main section at /
 const accountRoute = require('./routes/accountRoute.js');       // The route for the accounts section at /account/
 const toDoRoute = require('./routes/toDoRoute.js');             // The route for the To-Do Section at /to-do/
+const aboutRoute = require('./routes/aboutRoute.js');           // The route for the To-Do Section at /about/
 // Link the Routes to app listeners
 app.use('/', mainRoute);
 app.use('/account', accountRoute);
 app.use('/to-do', toDoRoute);
+app.use('/about', aboutRoute);
 // Listens the port
 app.listen(port, function() {
     var date = new Date();

@@ -7,6 +7,7 @@ const Router = express.Router();
 // Controllers
 const userController = require('../controllers/userController.js');
 const searchController = require('../controllers/searchController.js');
+const mainController = require('../controllers/mainController.js');
 // Create the routes
 Router.get('/', function(req, res) {
     searchController.index(req, res);
@@ -27,7 +28,7 @@ Router.get('/logout', function(req, res) {
     userController.logout(req, res);
 })
 Router.get('/support', function(req, res) {
-    res.render('main/support.ejs');
+    searchController.support(req, res);
 })
 Router.post('/signup', function(req, res) {
     userController.createUser(req, res);
@@ -37,6 +38,9 @@ Router.post('/signin-validate', function(req, res) {
 })
 Router.post('/signin', function(req, res) {
     userController.signIn(req, res);
+})
+Router.post('/visit-dtransmit', function(req, res) {
+    mainController.visitTdata(req, res);
 })
 // Exports the Router
 module.exports = Router;

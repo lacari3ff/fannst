@@ -1,0 +1,9 @@
+{
+    "priority": "user",
+    "useForRanking": {
+        "keywords": true,
+        "description": true,
+        "robots": true,
+        "copyright": true
+    }
+}

@@ -51,7 +51,7 @@
                 </ul>
             </div>
         </nav>
-        <main>
+        <main class="main">
             <div class="settings-section01">
                 <div class="settings-section01-title">
                     <img type="image/jpg" src="/images/main/nav/default-pf-98x98.jpg">
@@ -59,6 +59,7 @@
                     <h4>Controll your data, privacy and security to make Fannst work better for you</h4>
                 </div>
             </div>
+            <br>
             <div class="settings-section02">
                 <% if(user.user_desc == '') { %>
                     <figure>
@@ -111,12 +112,31 @@
                         </div>
                     </figure>
                 <% } %>
+                <% if(user.user_pic == 'def') { %>
+                    <figure>
+                        <span>
+                            <div>
+                                <h2>No profile picture</h2>
+                                <h4>Show people that it's you, and there is no better way to do this than a profile picture.</h4>
+                            </div>
+                        </span>
+                        <span>
+                            <img type="image/png" src="/images/main/account/notifications/pic_not_set_notif.png">
+                        </span>
+                        <hr>
+                        <div>
+                            <a>Set profile picture</a>
+                        </div>
+                    </figure>
+                <% } %>
             </div>
+            <br>
             <div class="settings-section03">
                 <span>
-                    <p>Only you can view your settings. Fannst has a priority to privacy and security.</p>
+                    <p>Only you can view your settings. Fannst has a priority to privacy and security. <a href="/account/privacy">Read more.</a></p>
                 </span>
                 <span>
+                    <img type="image/png" src="/images/main/account/security-icon.png">
                 </span>
             </div>
             <% include ../head/loader.html %>

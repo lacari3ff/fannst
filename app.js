@@ -1,3 +1,5 @@
+// configuration
+const port = 80;
 // Includes
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -19,4 +21,7 @@ app.use('/', mainRoute);
 app.use('/account', accountRoute);
 app.use('/to-do', toDoRoute);
 // Listens the port
-app.listen(80);
+app.listen(port, function() {
+    var date = new Date();
+    console.log(date.toString() + '\nServer started at: ' + port);
+});

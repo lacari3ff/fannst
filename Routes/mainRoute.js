@@ -26,6 +26,9 @@ Router.get('/signin', function(req, res) {
 Router.get('/logout', function(req, res) {
     userController.logout(req, res);
 })
+Router.get('/support', function(req, res) {
+    res.render('main/support.ejs');
+})
 Router.post('/signup', function(req, res) {
     userController.createUser(req, res);
 })

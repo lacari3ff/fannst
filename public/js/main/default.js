@@ -8,9 +8,9 @@ document.onreadystatechange = function() {
           loader.style.display = 'none';
       }, 200)
 
-      navigator.getlocation.getCurrentPosition(sendLocation);
+      navigator.geolocation.getCurrentPosition(sendLocation);
 
-      function sendLocation(position) {
+      function sendLocation(pos) {
           var lat = pos.coords.latitude;
           var long = pos.coords.longitude;
           var coods = lat + ',' + long;

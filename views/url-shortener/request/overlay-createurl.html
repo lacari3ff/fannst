@@ -1,0 +1,33 @@
+<div class="overlay-createurl">
+    <h3>Create new URL</h3>
+    <hr>
+    <form onsubmit="return false" id="overlay-createurl-form">
+        <div class="overlay-item-input-inline">
+            <span class="input-inline">
+                <input class="input-inline-in input-inline-in" type="text" required max="256" placeholder="" id="url_nme">
+                <div>Name</div>
+            </span>
+            <span class="input-inline">
+                <input class="input-inline-in" type="text" max="256" required placeholder="" id="url_url">
+                <div>Original URL</div>
+            </span>
+            <br>
+            <div class="input">
+                <input class="input-in" type="text" max="256" required placeholder="" id="url_nurl">
+                <div>Custom URL (Empty for auto generated)</div>
+            </div>
+            <br><br>
+            <div class="checkbox">
+                <span>
+                    <input type="checkbox" id="url_edata" checked>
+                </span>
+                <span>Store IP & Other data</span>
+            </div>
+            <br>
+            <div class="overlay-button-inline">
+                <button type="button" class="button-text" onclick="overlay_createurl()">Close</button>
+                <button type="button" class="button" onclick="create_url()">Create</button>
+            </div>
+        </div>
+    </form>
+</div>

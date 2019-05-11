@@ -1,4 +1,5 @@
 // Includes
+const path = require('path');
 const express = require('express');
 // Setup
 const Router = express.Router();
@@ -8,6 +9,12 @@ const urlShortenerController = require('../controllers/urlShortenerController.js
 // Create the routes
 Router.get('/start', function(req, res) {
     urlShortenerController.start(req, res);
+})
+Router.get('/request/overlay-createurl', function(req, res) {
+    res.sendFile(path.resolve(__dirname + '/../views/url-shortener/request/overlay-createurl.html'))
+})
+Router.post('/create-url', function(req, res) {
+    urlShortenerController.createUrl(req, res);
 })
 // Exports the Router
 module.exports = Router;

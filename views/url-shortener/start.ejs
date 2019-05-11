@@ -7,7 +7,7 @@
         <link rel="stylesheet" type="text/css" href="/style/url-shortener/layout.css">
         <link rel="stylesheet" type="text/css" href="/style/url-shortener/start.css">
         <link rel="stylesheet" type="text/css" href="/style/main/profile-dropdown.css">
-        <script src="/js/main/search.js" defer></script>
+        <script src="/js/url-shortener/index.js" defer></script>
         <script src="/js/main/profile-dropdown.js" defer></script>
         <meta name="keywords" content="search, engine, service">
         <meta name="copyright" content="Luke Rieff">
@@ -18,7 +18,7 @@
             <% include ../head/profile-head.ejs %>
             <div class="nav-side">
                 <img type="image/png" src="/images/main/url-shortener/icon-top-main.png">
-                <button class="nav-side-createurl">
+                <button onclick="overlay_createurl()" class="nav-side-createurl">
                     <span>
                         <img type="image/png" src="/images/main/url-shortener/plus-icon.png">
                     </span>
@@ -48,12 +48,8 @@
         <main>
             <div class="">
             </div>
-            <div class="overlay-createurl">
-                <h3>Create new URL</h3>
-                <hr>
-                <form onsubmit="return false">
-                    
-                </form>
+            <div class="overlay" id="overlay" style="display: none">
+                <div class="overlay-item" id="overlay-createurl-ic" style="display: none"></div>
             </div>
             <% include ../head/loader.html %>
         </main>

@@ -6,7 +6,7 @@ module.exports = class Url {
         this.url_nme = urlObject.url_nme;
         this.url_edata = urlObject.url_edata;
         this.url_cdate = urlObject.url_cdate;
-        this.url_url = urlObject.url_url;
+        this.url_nurl = urlObject.url_nurl;
     }; save(dbo, cb) {
         dbo.collection('url_shortener').insertOne(this, function(err) {
             if(err) {

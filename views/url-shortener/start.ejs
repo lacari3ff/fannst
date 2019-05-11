@@ -45,8 +45,24 @@
                 </ul>
             </div>
         </nav>
-        <main>
-            <div class="">
+        <main class="main">
+            <div class="urls">
+                <ul>
+                    <% urls.forEach(function(url) { %>
+                        <li>
+                            <span><%= url.url_nme %></span>
+                            <span>
+                                <a href="https://fannst.nl/url?id=<%= url.url_nurl %>">https://fannst.nl/url?id=<%= url.url_nurl %></a>
+                            </span>
+                            <span><%= url.url_cdate %></span>
+                            <span>
+                                <button>
+                                    <img type="image/png" src="/images/main/url-shortener/arrow-icon.png">
+                                </button>
+                            </span>
+                        </li>
+                    <% }); %>
+                </ul>
             </div>
             <div class="overlay" id="overlay" style="display: none">
                 <div class="overlay-item" id="overlay-createurl-ic" style="display: none"></div>

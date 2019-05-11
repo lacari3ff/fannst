@@ -17,5 +17,41 @@ module.exports = class Url {
                 }
             }
         })
-    };
+    }; static fetchById(dbo, id, cb) {
+        dbo.collection('url_shortener').findOne({
+            url_id: id
+        }, function(err, resdb) {
+            if(err) {
+                cb(false);
+            } else if(resdb == null) {
+                cb(false);
+            } else {
+                cb(resdb);
+            }
+        })
+    }; static fetchByHid(dbo, hid, cb) {
+        dbo.collection('url_shortener').find({
+            url_hid: hid
+        }).toArray(function(err, resdb) {
+            if(err) {
+                cb(false);
+            } else if(resdb == null) {
+                cb(false);
+            } else {
+                cb(resdb);
+            }
+        })
+    }; static fetchByNurl(dbo, nurl, cb) {
+        dbo.collection('url_shortener').findOne({
+            url_nurl: nurl
+        }, function(err, resdb) {
+            if(err) {
+                cb(false);
+            } else if(resdb == null) {
+                cb(false);
+            } else {
+                cb(resdb);
+            }
+        })
+    }
 }

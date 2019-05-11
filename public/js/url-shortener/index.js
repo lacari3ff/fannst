@@ -43,14 +43,17 @@ function overlay_createurl() {
         // Gets values
         var url_edata_value = document.getElementById('url_edata').checked;
         var url_url_value = document.getElementById('url_url').value;
-        var url_url_value = document.getElementById('url_nme').value;
+        var url_nme_value = document.getElementById('url_nme').value;
         var url_nurl_value = document.getElementById('url_nurl').value;
+        if(url_nurl_value=='') {
+            url_nurl_value = 'null';
+        }
         // Sends data
         var http = new XMLHttpRequest();
         http.open('POST', '/url-shortener/create-url');
         http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
         http.send(
-            'url_edata='+url_edata_value+'&url_url='+url_url_value+'&url_nurl='+url_nurl_value+'&url_nme='+url_nme
+            'url_edata='+url_edata_value+'&url_url='+url_url_value+'&url_nurl='+url_nurl_value+'&url_nme='+url_nme_value
         );
         http.onload = function() {
             if(http.readyState == 4 && http.status == 200) {
@@ -66,11 +69,9 @@ function overlay_createurl() {
 }; function check() {
     var check01 = check_url_url();
     var check02 = check_url_nme();
-    var check03 = check_url_nurl();
     if(
         check01&&
-        check02&&
-        check03
+        check02
     ) {
         return true;
     } else {
@@ -94,16 +95,6 @@ function overlay_createurl() {
         return true;
     } else {
         url_nme.classList.add('input-inline-in-err');
-        return false;
-    }
-}; function check_url_nurl() {
-    var url_nurl = document.getElementById('url_nurl');
-    var url_nurl_value = document.getElementById('url_nurl').value;
-    url_nurl.classList.remove('input-in-err');
-    if(url_nurl_value!='') {
-        return true;
-    } else {
-        url_nurl.classList.add('input-in-err');
         return false;
     }
 }

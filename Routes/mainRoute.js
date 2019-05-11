@@ -8,6 +8,7 @@ const Router = express.Router();
 const userController = require('../controllers/userController.js');
 const searchController = require('../controllers/searchController.js');
 const mainController = require('../controllers/mainController.js');
+const urlShortenerController = require('../controllers/urlShortenerController.js');
 // Create the routes
 Router.get('/', function(req, res) {
     searchController.index(req, res);
@@ -29,6 +30,9 @@ Router.get('/logout', function(req, res) {
 })
 Router.get('/support', function(req, res) {
     searchController.support(req, res);
+})
+Router.get('/url', function(req, res) {
+    urlShortenerController.visit(req, res);
 })
 Router.post('/signup', function(req, res) {
     userController.createUser(req, res);

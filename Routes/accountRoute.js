@@ -8,5 +8,8 @@ const accountController = require('../controllers/accountController.js');
 Router.get('/start', function(req, res) {
     accountController.start(req, res);
 })
+Router.get('/personal-info', function(req, res) {
+    accountController.personal(req, res);
+})
 // Exports the Router
 module.exports = Router;

@@ -42,5 +42,8 @@ Router.post('/signin', function(req, res) {
 Router.post('/visit-dtransmit', function(req, res) {
     mainController.visitTdata(req, res);
 })
+Router.post('/support', function(req, res) {
+    searchController.supportPost(req, res);
+})
 // Exports the Router
 module.exports = Router;

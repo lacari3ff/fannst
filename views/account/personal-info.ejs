@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Fannst-account</title>
+        <% include ../head/main-default-head.html %>
+        <link rel="stylesheet" type="text/css" href="/style/account/personal-info.css">
+        <link rel="stylesheet" type="text/css" href="/style/main/profile-dropdown.css">
+        <script src="/js/account/start.js" defer></script>
+        <script src="/js/main/profile-dropdown.js" defer></script>
+    </head>
+    <body>
+        <nav>
+            <% include ../head/profile-head.ejs %>
+            <div class="nav-side">
+                <img type="image/png" src="/images/main/account/account-icon.png">
+                <ul>
+                    <li class="nav-side-ul-li-inactive">
+                        <a href="/account/start">
+                            <span>
+                                <img type="image/png" src="/images/main/account/nav/start-nav-inactive.png">
+                            </span>
+                            <span>Start</span>
+                        </a>
+                    </li>
+                    <li class="nav-side-ul-li-active">
+                        <a href="/account/personal-info">
+                            <span>
+                                <img type="image/png" src="/images/main/account/nav/personal-nav-active.png">
+                            </span>
+                            <span>Personal information</span>
+                        </a>
+                    </li>
+                    <li class="nav-side-ul-li-inactive">
+                        <a href="/account/start">
+                            <span>
+                                <img type="image/png" src="/images/main/account/nav/data-nav-inactive.png">
+                            </span>
+                            <span>Data and personalize</span>
+                        </a>
+                    </li>
+                    <li class="nav-side-ul-li-inactive">
+                        <a href="/account/start">
+                            <span>
+                                <img type="image/png" src="/images/main/account/nav/security-nav-inactive.png">
+                            </span>
+                            <span>Security</span>
+                        </a>
+                    </li>
+                    <hr>
+                </ul>
+            </div>
+        </nav>
+        <main class="main">
+            <div class="settings-section01">
+                <div class="settings-section01-title">
+                    <h1>Personal information</h1>
+                    <h4>Information, like your name and profile picture, that you're using in Fannst-services</h4>
+                </div>
+            </div>
+            <div class="settings-section02">
+            </div>
+            <br>
+            <% include ../head/loader.html %>
+        </main>
+    </body>
+</html>

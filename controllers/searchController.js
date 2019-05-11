@@ -136,7 +136,7 @@ module.exports.search = function(req, res) {
                                             ste_url: {$regex: query.params.toLowerCase()}
                                         },
                                     ]
-                                }).sort({ste_srank : -1, ste_rank : -1, ste_url: -1}).limit(30).toArray(function(err, results) {
+                                }).sort({ste_srank : -1, ste_rank : -1}).limit(30).toArray(function(err, results) {
                                     if(err) {
                                         res.redirect(307, '/');
                                     } else {
@@ -248,4 +248,35 @@ module.exports.support = function(req, res) {
             });
         }
     })
+}
+module.exports.supportPost = function(req, res) {
+    // Gets data
+    var ste_url = req.body.ste_url;
+
+    // Checks if data is valid
+    if(
+        ste_url!=undefined&&
+        ste_url!=''
+    ) {
+        mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
+            if(err) {
+                res.status(200).send({status: false});
+            } else {
+                var dbo = db.db('fannstdb-search');
+    
+                dbo.collection('sites_ti').insertOne({
+                    ste_url: ste_url
+                }, function(err) {
+                    if(err) {
+                        res.status(200).send({status: false})
+                    } else {
+                        res.status(200).send({status: true})
+                    }
+                })
+            }
+        })
+
+    } else {
+        res.status(200).send({status: false, err: 408});
+    }
 }

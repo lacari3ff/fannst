@@ -4,9 +4,10 @@
         <meta charset="utf-8">
         <title>Fannst Search Support</title>
         <% include ../head/main-default-head.html %>
-        <link rel="stylesheet" type="text/css" href="/style/support/index.css">
+        <link rel="stylesheet" type="text/css" href="/style/main/support.css">
         <link rel="stylesheet" type="text/css" href="/style/main/profile-dropdown.css">
         <script src="/js/main/profile-dropdown.js" defer></script>
+        <script src="/js/main/support.js" defer></script>
         <meta name="keywords" content="search, engine, service">
         <meta name="copyright" content="Luke Rieff">
         <meta name="description" content="A Google Like Search Engine, Build By Teens 'Fannst'.">
@@ -16,16 +17,17 @@
             <% include ../head/profile-head.ejs %>
         </nav>
         <main>
-            <div class="support">
-                <form>
+            <div class="support singleWindow">
+                <form onsubmit="return false">
+                    <div class="support-cb" id="support-cb"></div>
                     <div class="input">
-                        <input class="input-in" type="text" max="256" required placeholder="" id="user_email">
+                        <input class="input-in" type="text" max="256" required placeholder="" id="ste_url">
                         <div>URL</div>
                     </div>
                     <br><br>
-                    <div>
+                    <div class="support-buttons">
                         <a class="button-text" href="/">Go back</a>
-                        <button class="button" type="button">Submit</button>
+                        <button class="button" type="button" onclick="send()">Submit</button>
                     </div>
                 </form>
             </div>

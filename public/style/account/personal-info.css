@@ -1,0 +1,108 @@
+.settings-section01 {
+    text-align: center;
+}
+
+.settings-section01-title {
+    margin-top: 60px;
+    display: inline-table;
+}
+
+.settings-section01-title > h1 {
+    font-size: 25px;
+    font-weight: normal;
+    color: #050505;
+    font-family: sans-serif;
+    margin-bottom: 12px;
+}
+
+.settings-section01-title > h4 {
+    margin-top: 12px;
+    font-size: 17px;
+    font-weight: normal;
+    color: #5F6368;
+    font-family: sans-serif;
+    max-width: 400px;
+}
+
+.settings-sec {
+    border-radius: 5px;
+    border: 1px solid #D9DBDF;
+    margin: 14px;
+}
+
+.settings-sec-inner > button {
+    max-width: 800px;
+    padding: 12px;
+    position: relative;
+    height: 45px;
+    width: 100%;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.settings-sec-inner > button:hover {
+    background-color: #F5F5F5
+}
+
+.settings-sec-inner > button:not(:last-child) {
+    border-bottom: 1px solid #D9DBDF;
+}
+
+.settings-sec-inner > button > span:nth-child(1) {
+    position: absolute;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-size: 12px;
+    color: #5F6368;
+    font-family: sans-serif;
+}
+
+.settings-sec-inner > button > span:nth-child(2) {
+    position: absolute;
+    left: 120px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+}
+
+.settings-sec-inner > button > span:nth-child(3) {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.settings-sec-inner > button > span:nth-child(3) > img {
+    width: 8px;
+}
+
+@media only screen and (min-width: 1000px) {
+    .settings-sec {
+        display: inline-table;
+        width: 800px;
+    }
+}
+
+.settings-sec-title {
+    text-align: left;
+    margin: 24px;
+}
+
+.settings-sec-title > h2 {
+    font-size: 21px;
+    font-weight: normal;
+    color: #050505;
+    font-family: sans-serif;
+    margin-bottom: 12px;
+}
+
+.settings-sec-title > h4 {
+    margin: 0;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #5F6368;
+    font-weight: normal;
+}

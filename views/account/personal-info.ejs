@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>Fannst-account</title>
         <% include ../head/main-default-head.html %>
+        <link rel="stylesheet" type="text/css" href="/style/account/layout.css">
         <link rel="stylesheet" type="text/css" href="/style/account/personal-info.css">
         <link rel="stylesheet" type="text/css" href="/style/main/profile-dropdown.css">
         <script src="/js/account/start.js" defer></script>
@@ -58,7 +59,67 @@
                     <h4>Information, like your name and profile picture, that you're using in Fannst-services</h4>
                 </div>
             </div>
-            <div class="settings-section02">
+            <div class="settings-sec">
+                <div class="settings-sec-title">
+                    <h2>Profile</h2>
+                    <h4>Certain information may be visible to other Fannst users.</h4>
+                </div>
+                <div class="settings-sec-inner">
+                    <button>
+                        <span>PHOTO</span>
+                        <span>With a photo you can personalize your account</span>
+                        <span>
+                            <img type="image/png" src="/images/main/account/arrow-icon.png">
+                        </span>
+                    </button>
+                    <br>
+                    <button>
+                        <span>NAME</span>
+                        <span><%= user.user_first %> <%= user.user_last %></span>
+                        <span>
+                            <img type="image/png" src="/images/main/account/arrow-icon.png">
+                        </span>
+                    </button>
+                    <br>
+                    <button>
+                        <span>BIRTHDAY</span>
+                        <span><%= user.user_bdate %></span>
+                        <span>
+                            <img type="image/png" src="/images/main/account/arrow-icon.png">
+                        </span>
+                    </button>
+                    <br>
+                    <button>
+                        <span>GENDER</span>
+                        <span><% if(user.user_gender == 'm') { %>Male<% } else if(user.user_gender == 'f') { %>Female<% } else { %>I prefer not to tell<%}%></span>
+                        <span>
+                            <img type="image/png" src="/images/main/account/arrow-icon.png">
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <br><br>
+            <div class="settings-sec">
+                <div class="settings-sec-title">
+                    <h2>Contact information</h2>
+                </div>
+                <div class="settings-sec-inner">
+                    <button>
+                        <span>E-MAIL</span>
+                        <span><%= user.user_email %></span>
+                        <span>
+                            <img type="image/png" src="/images/main/account/arrow-icon.png">
+                        </span>
+                    </button>
+                    <br>
+                    <button>
+                        <span>PHONE</span>
+                        <span><%= user.user_phone %></span>
+                        <span>
+                            <img type="image/png" src="/images/main/account/arrow-icon.png">
+                        </span>
+                    </button>
+                </div>
             </div>
             <br>
             <% include ../head/loader.html %>

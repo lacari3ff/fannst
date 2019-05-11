@@ -15,8 +15,6 @@ mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNew
                 wait()
             } else {
                 if(resdb == null) {
-                    process.stdout.write('\033c');
-                    console.log('Awaiting crawl :p')
                     setTimeout(function() {
                         wait();
                     }, 2000)

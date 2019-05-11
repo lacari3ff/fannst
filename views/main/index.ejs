@@ -6,7 +6,7 @@
         <% include ../head/main-default-head.html %>
         <link rel="stylesheet" type="text/css" href="/style/main/index.css">
         <link rel="stylesheet" type="text/css" href="/style/main/profile-dropdown.css">
-        <script src="/js/main/index.js" defer></script>
+        <script src="/js/main/search.js" defer></script>
         <script src="/js/main/profile-dropdown.js" defer></script>
         <meta name="keywords" content="search, engine, service">
         <meta name="copyright" content="Luke Rieff">
@@ -21,13 +21,13 @@
                 <div class="search-doodle">
                     <img type="image/png" src="/images/brand/doodles/doodle01.png">
                 </div>
-                <form action="/search" method="get">
+                <form action="/search" method="get" id="search-form">
                     <div class="search-input">
                         <span>
                             <input type="text" id="search_input" name="params">
                         </span>
                         <span>
-                            <button type="button">
+                            <button type="button" onclick="voice_search()">
                                 <img type="image/png" src="/images/main/search/voice-icon.png">
                             </button>
                         </span>
@@ -47,6 +47,22 @@
                     </span>
                     <span>Privacy and opinion matters to us. <a href="/account/privacy">Customize Fannst to match.</a></span>
                 </div>
+            </div>
+            <div class="voice-overlay" id="voice-overlay" style="display: none">
+                <span>
+                    <p id="voice-output">Start talking...</p>
+                </span>
+                <span>
+                    <span>
+                        <button class="voice-overlay-normal">
+                            <img type="image/png" src="/images/main/search/voice-search.png">
+                            <div class="voice-overlay-listening"></div>
+                        </button>
+                    </span>
+                    <span>
+                        <img type="image/png" src="/images/main/search/voice-fannst-icon.png">
+                    </span>
+                </span>
             </div>
             <% include ../head/loader.html %>
         </main>

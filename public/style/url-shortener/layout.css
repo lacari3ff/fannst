@@ -1,0 +1,117 @@
+.main {
+    margin-left: 220px;
+    text-align: center;
+}
+
+.nav-side {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+}
+
+.nav-side > img {
+    width: 160px;
+    margin: 16px;
+}
+
+.nav-side-ul-li-active {
+    height: 30px;
+    padding: 6px;
+    width: 200px;
+    background-color: #E7F0FD;
+    border-top-right-radius: 1000px;
+    border-bottom-right-radius: 1000px;
+}
+
+.nav-side > ul > li > a {
+    display: block;
+    height: 30px;
+    width: 200px;
+}
+
+.nav-side-ul-li-inactive {
+    height: 30px;
+    padding: 6px;
+    width: 200px;
+    border-top-right-radius: 1000px;
+    border-bottom-right-radius: 1000px;
+}
+
+.nav-side-ul-li-inactive:hover {
+    background-color: #F5F5F5;
+}
+
+.nav-side > ul {
+    padding: 0;
+    list-style: none;
+}
+
+.nav-side > ul > li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.nav-side > ul > li > a > span:nth-child(1) {
+    margin-right: 10px;
+}
+
+.nav-side > ul > li > a > span:nth-child(1) > img {
+    width: 22px;
+    display: block;
+}
+
+.nav-side-ul-li-active > a > span:nth-child(2) {
+    color: #2176E3;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.nav-side-ul-li-inactive > a > span:nth-child(2) {
+    color: #5F6368;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.nav-side > ul > li > a > span {
+    display: inline-table;
+    vertical-align: middle;
+}
+
+.nav-side > ul > hr {
+    border: none;
+    width: 200px;
+    border-bottom: 1px solid #D9DBDF;
+}
+
+.nav-side-createurl {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin: 8px;
+    border-radius: 1000px;
+    box-shadow: 1px 1px 4px #00000055;
+}
+
+.nav-side-createurl > span {
+    display: inline-table;
+    vertical-align: middle;
+}
+
+.nav-side-createurl > span:nth-child(1) > img {
+    width: 30px;
+}
+
+.nav-side-createurl > span:nth-child(1) {
+    margin-right: 8px;
+}
+
+.nav-side-createurl > span:nth-child(2) {
+    font-size: 13px;
+    font-weight: bold;
+    color: #3E4245;
+}

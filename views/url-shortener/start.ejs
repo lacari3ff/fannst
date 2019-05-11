@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Fannst Url Shortener</title>
+        <% include ../head/main-default-head.html %>
+        <link rel="stylesheet" type="text/css" href="/style/url-shortener/layout.css">
+        <link rel="stylesheet" type="text/css" href="/style/url-shortener/start.css">
+        <link rel="stylesheet" type="text/css" href="/style/main/profile-dropdown.css">
+        <script src="/js/main/search.js" defer></script>
+        <script src="/js/main/profile-dropdown.js" defer></script>
+        <meta name="keywords" content="search, engine, service">
+        <meta name="copyright" content="Luke Rieff">
+        <meta name="description" content="A Google Like Search Engine, Build By Teens 'Fannst'.">
+    </head>
+    <body>
+        <nav>
+            <% include ../head/profile-head.ejs %>
+            <div class="nav-side">
+                <img type="image/png" src="/images/main/url-shortener/icon-top-main.png">
+                <button class="nav-side-createurl">
+                    <span>
+                        <img type="image/png" src="/images/main/url-shortener/plus-icon.png">
+                    </span>
+                    <span>Add new URL</span>
+                </button>
+                <ul>
+                    <li class="nav-side-ul-li-active">
+                        <a href="/url-shortener/start">
+                            <span>
+                                <img type="image/png" src="/images/main/url-shortener/nav/nav-start-active.png">
+                            </span>
+                            <span>Start</span>
+                        </a>
+                    </li>
+                    <li class="nav-side-ul-li-inactive">
+                        <a href="/url-shortener/urls">
+                            <span>
+                                <img type="image/png" src="/images/main/url-shortener/nav/nav-urls-inactive.png">
+                            </span>
+                            <span>Url's</span>
+                        </a>
+                    </li>
+                    <hr>
+                </ul>
+            </div>
+        </nav>
+        <main>
+            <div class="">
+            </div>
+            <div class="overlay-createurl">
+                <h3>Create new URL</h3>
+                <hr>
+                <form onsubmit="return false">
+                    
+                </form>
+            </div>
+            <% include ../head/loader.html %>
+        </main>
+    </body>
+</html>

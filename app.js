@@ -17,11 +17,13 @@ const mainRoute = require('./routes/mainRoute.js');             // The route for
 const accountRoute = require('./routes/accountRoute.js');       // The route for the accounts section at /account/
 const toDoRoute = require('./routes/toDoRoute.js');             // The route for the To-Do Section at /to-do/
 const aboutRoute = require('./routes/aboutRoute.js');           // The route for the To-Do Section at /about/
+const urlShortenerRoute = require('./routes/urlShortenerRoute.js');           // The route for the To-Do Section at /about/
 // Link the Routes to app listeners
 app.use('/', mainRoute);
 app.use('/account', accountRoute);
 app.use('/to-do', toDoRoute);
 app.use('/about', aboutRoute);
+app.use('/url-shortener', urlShortenerRoute);
 // Listens the port
 app.listen(port, function() {
     var date = new Date();

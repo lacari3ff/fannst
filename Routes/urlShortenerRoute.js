@@ -19,5 +19,8 @@ Router.get('/request/overlay-viewurl', function(req, res) {
 Router.post('/create-url', function(req, res) {
     urlShortenerController.createUrl(req, res);
 })
+Router.post('/remove-url', function(req, res) {
+    urlShortenerController.removeUrl(req, res);
+})
 // Exports the Router
 module.exports = Router;

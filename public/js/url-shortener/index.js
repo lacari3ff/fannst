@@ -23,6 +23,31 @@ function overlay_viewurl(id) {
             }
         }
     }
+}; function remove_url(id) {
+    if(
+        id!=undefined
+    ) {
+        var http = new XMLHttpRequest();
+        http.open('POST', '/url-shortener/remove-url');
+        http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+        http.send(
+            'url_id='+id
+        );
+        http.onload = function() {
+            if(http.readyState == 4 && http.status == 200) {
+                var data = JSON.parse(http.responseText);
+                console.log(data)
+                if(data.status == true) {
+                    overlay_viewurl_ic.style.animation = 'animate_out .2s';
+                    setTimeout(function() {
+                        overlay_viewurl_ic.style.display = 'none';
+                        overlay.style.display = 'none';
+                        overlay_viewurl_ic.innerHTML = null;
+                    }, 200)
+                }
+            }
+        }
+    }
 }; function overlay_closeview() {
     overlay_viewurl_ic.style.animation = 'animate_out .2s';
     setTimeout(function() {

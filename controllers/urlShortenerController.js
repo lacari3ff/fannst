@@ -32,6 +32,56 @@ module.exports.start = function(req, res) {
         }
     })
 }
+module.exports.removeUrl = function(req, res) {
+    // Gets data
+    var url_id = req.body.url_id;
+    // Checks data
+    if(
+        url_id != undefined
+    ) {
+        userController.userCheck(req, res, function(user) {
+            if(user) {
+                mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
+                    if(err) {
+                        res.status(200).send({status: false, err: 'Server error'});
+                    } else {
+                        dbo = db.db('fannstdb-url-shortener');
+
+                        Url.fetchById(dbo, url_id, function(url) {
+                            if(url) {
+                                if(url.url_hid == user.user_hid) {
+                                    dbo.collection('url_shortener').deleteOne({
+                                        url_id: url_id
+                                    }, function(err) {
+                                        if(err) {
+                                            res.status(200).send({status: false, err: 'Server error'});
+                                        } else {
+                                            dbo.collection('url_shortener_his').deleteMany({
+                                                his_id: url_id
+                                            }, function(err) {
+                                                if(err) {
+                                                    res.status(200).send({status: false, err: 'Server error'});
+                                                } else {
+                                                    res.status(200).send({status: true});
+                                                }
+                                            })
+                                        }
+                                    })
+                                } else {
+                                    res.status(200).send({status: false, err: 'Not authorized'});
+                                }
+                            } else {
+                                res.status(200).send({status: false, err: 'Url not found'});
+                            }
+                        })
+                    }
+                })
+            } else {
+                res.status(200).send({status: false, err: 'Not authorized'});
+            }
+        });
+    }
+}
 module.exports.createUrl = function(req, res) {
     // Gets data
     var urlObject = {
@@ -116,66 +166,70 @@ module.exports.visit = function(req, res) {
 
                 Url.fetchByNurl(dbo, nurl, function(resdb) {
                     if(resdb) {
-                        var cdate = dateTool.genDate(['h', 'd', 'M', 'y']);
-                        dbo.collection('url_shortener_his').findOne({
-                            $and: [
-                                {
-                                    his_id: resdb.url_id
-                                },
-                                {
-                                    his_cdate: cdate
-                                }
-                            ]
-                        }, function(err, his) {
-                            if(err) {
-                                res.redirect(307, '/')
-                            } else {
-                                if(his) {
-                                    var hisArray = his.his_his;
-                                    hisArray.push({
-                                        his_device: req.headers['user-agent'],
-                                        his_ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
-                                        his_date: dateTool.genDate(['mi'])
-                                    })
-                                    dbo.collection('url_shortener_his').updateOne({
-                                        $and: [
-                                            {
-                                                his_id: resdb.url_id
-                                            },
-                                            {
-                                                his_cdate: cdate
-                                            }
-                                        ]
-                                    }, {$set: {
-                                        his_his: hisArray
-                                    }}, function(err) {
-                                        if(err) {
-                                            res.redirect(307, '/');
-                                        } else {
-                                            res.redirect(307, resdb.url_url);
-                                        }
-                                    })
-                                } else {
-                                    var hisArray = [];
-                                    hisArray.push({
-                                        his_device: req.headers['user-agent'],
-                                        his_ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
-                                        his_date: dateTool.genDate(['mi'])
-                                    })
-                                    dbo.collection('url_shortener_his').insertOne({
-                                        his_his: hisArray,
-                                        his_cdate: cdate,
+                        if(resdb.url_edata == 'true') {
+                            var cdate = dateTool.genDate(['h', 'd', 'M', 'y']);
+                            dbo.collection('url_shortener_his').findOne({
+                                $and: [
+                                    {
                                         his_id: resdb.url_id
-                                    }, function(err) {
-                                        if(err) {
-                                            res.redirect(307, '/');
-                                        } else {
-                                            res.redirect(307, resdb.url_url);
-                                        }
-                                    })
+                                    },
+                                    {
+                                        his_cdate: cdate
+                                    }
+                                ]
+                            }, function(err, his) {
+                                if(err) {
+                                    res.redirect(307, '/')
+                                } else {
+                                    if(his) {
+                                        var hisArray = his.his_his;
+                                        hisArray.push({
+                                            his_device: req.headers['user-agent'],
+                                            his_ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+                                            his_date: dateTool.genDate(['mi'])
+                                        })
+                                        dbo.collection('url_shortener_his').updateOne({
+                                            $and: [
+                                                {
+                                                    his_id: resdb.url_id
+                                                },
+                                                {
+                                                    his_cdate: cdate
+                                                }
+                                            ]
+                                        }, {$set: {
+                                            his_his: hisArray
+                                        }}, function(err) {
+                                            if(err) {
+                                                res.redirect(307, '/');
+                                            } else {
+                                                res.redirect(307, resdb.url_url);
+                                            }
+                                        })
+                                    } else {
+                                        var hisArray = [];
+                                        hisArray.push({
+                                            his_device: req.headers['user-agent'],
+                                            his_ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+                                            his_date: dateTool.genDate(['mi'])
+                                        })
+                                        dbo.collection('url_shortener_his').insertOne({
+                                            his_his: hisArray,
+                                            his_cdate: cdate,
+                                            his_id: resdb.url_id
+                                        }, function(err) {
+                                            if(err) {
+                                                res.redirect(307, '/');
+                                            } else {
+                                                res.redirect(307, resdb.url_url);
+                                            }
+                                        })
+                                    }
                                 }
-                            }
-                        })
+                            })
+                        } else {
+                            res.redirect(307, resdb.url_url);
+                        }
                     } else {
                         res.redirect(307, '/');
                     }

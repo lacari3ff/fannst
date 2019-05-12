@@ -1,8 +1,36 @@
 // Gets doms
 const overlay = document.getElementById('overlay')
 const overlay_createurl_ic = document.getElementById('overlay-createurl-ic');
+const overlay_viewurl_ic = document.getElementById('overlay-viewurl-ic');
 // Functions
-function overlay_createurl() {
+function overlay_viewurl(id) {
+    if(!overlay.classList.contains('overlay-styleac')) {
+        includeOverlayStyle();
+    }
+    if(
+        id!=''
+    ) {
+        var http = new XMLHttpRequest();
+        http.open('GET', '/url-shortener/request/overlay-viewurl?url_id='+id);
+        http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+        http.send();
+        http.onload = function() {
+            if(http.readyState == 4 && http.status == 200) {
+                overlay_viewurl_ic.style.display = 'block';
+                overlay_viewurl_ic.style.animation = 'animate_in .2s';
+                overlay.style.display = 'block';
+                overlay_viewurl_ic.innerHTML = http.responseText;
+            }
+        }
+    }
+}; function overlay_closeview() {
+    overlay_viewurl_ic.style.animation = 'animate_out .2s';
+    setTimeout(function() {
+        overlay_viewurl_ic.style.display = 'none';
+        overlay.style.display = 'none';
+        overlay_viewurl_ic.innerHTML = null;
+    }, 200)
+}; function overlay_createurl() {
     if(!overlay.classList.contains('overlay-styleac')) {
         includeOverlayStyle();
     }
@@ -16,6 +44,8 @@ function overlay_createurl() {
             setTimeout(function() {
                 overlay_createurl_ic.style.display = 'none';
                 overlay.style.display = 'none';
+                var overlay_createurl_form = document.getElementById('overlay-createurl-form');
+                overlay_createurl_form.reset();
             }, 200)
         }
     } else {
@@ -36,6 +66,9 @@ function overlay_createurl() {
     overlay.classList.add('overlay-styleac');
     overlay.insertAdjacentHTML('afterbegin', '<link rel="stylesheet" type="text/css" href="/style/url-shortener/request/overlay-item.css">')
 }; function create_url() {
+    // Resets values
+    var overlay_createurl_err = document.getElementById('overlay-createurl-err');
+    overlay_createurl_err.innerHTML = null;
     // Checks if data is set
     if(
         check()
@@ -62,6 +95,8 @@ function overlay_createurl() {
                     var overlay_createurl_form = document.getElementById('overlay-createurl-form');
                     overlay_createurl_form.reset();
                     overlay_createurl();
+                } else {
+                    overlay_createurl_err.innerHTML = data.err;
                 }
             }
         }

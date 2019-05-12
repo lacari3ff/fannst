@@ -80,6 +80,9 @@ module.exports.search = function(req, res) {
                                             ste_title: {$regex: query.params.toLowerCase()}
                                         },
                                         {
+                                            ste_title: {$regex: query.params}
+                                        },
+                                        {
                                             ste_keywds: {$regex: query.params.toLowerCase()}
                                         },
                                         {

@@ -13,6 +13,9 @@ Router.get('/start', function(req, res) {
 Router.get('/request/overlay-createurl', function(req, res) {
     res.sendFile(path.resolve(__dirname + '/../views/url-shortener/request/overlay-createurl.html'))
 })
+Router.get('/request/overlay-viewurl', function(req, res) {
+    urlShortenerController.viewUrl(req, res);
+})
 Router.post('/create-url', function(req, res) {
     urlShortenerController.createUrl(req, res);
 })

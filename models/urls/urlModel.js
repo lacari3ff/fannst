@@ -10,11 +10,9 @@ module.exports = class Url {
     }; save(dbo, cb) {
         dbo.collection('url_shortener').insertOne(this, function(err) {
             if(err) {
-                if(err) {
-                    cb(false);
-                } else {
-                    cb(true);
-                }
+                cb(false);
+            } else {
+                cb(true);
             }
         })
     }; static fetchById(dbo, id, cb) {

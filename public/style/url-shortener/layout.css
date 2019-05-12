@@ -94,7 +94,7 @@
     padding-left: 16px;
     margin: 8px;
     border-radius: 1000px;
-    box-shadow: 1px 1px 4px #00000055;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.55);
 }
 
 .nav-side-createurl > span {

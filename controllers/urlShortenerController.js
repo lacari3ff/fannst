@@ -50,50 +50,55 @@ module.exports.createUrl = function(req, res) {
             if(user) {
                 mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
                     if(err) {
-                        res.status(200).send({status: false, err: 500});
+                        res.status(200).send({status: false, err: 'Server error'});
                     } else {
                         dbo = db.db('fannstdb-url-shortener');
-                        
-                        function createUrl() {
-                            var url_id = crypto.randomBytes(16).toString('hex').substring(0, 16);
-                            
-                            Url.fetchById(dbo, url_id, function(url) {
-                                if(url) {
-                                    createUrl();
-                                } else{
-                                    urlObject.url_id = url_id;
-                                    urlObject.url_cdate = dateTool.genDate(['d', 'M', 'y']);
-                                    urlObject.url_hid = user.user_hid;
 
-                                    if(urlObject.url_nurl == 'null') {
-                                        urlObject.url_nurl = urlObject.url_id;
-                                    } else {
-                                        urlObject.url_nurl = urlObject.url_id + '-' + urlObject.url_nurl;
-                                    }
+                        Url.fetchByHid(dbo, user.user_hid, function(urls) {
+                            if(urls.length <= 14) {
+                                function createUrl() {
+                                    var url_id = crypto.randomBytes(16).toString('hex').substring(0, 16);
                                     
-                                    var urlo = new Url(urlObject);
-                                    urlo.save(dbo, function(succes) {
-                                        if(succes) {
-                                            res.status(200).send({status: true});
-                                        } else {
-                                            res.status(200).send({status: false, err: 500});
+                                    Url.fetchById(dbo, url_id, function(url) {
+                                        if(url) {
+                                            createUrl();
+                                        } else{
+                                            urlObject.url_id = url_id;
+                                            urlObject.url_cdate = dateTool.genDate(['d', 'M', 'y']);
+                                            urlObject.url_hid = user.user_hid;
+        
+                                            if(urlObject.url_nurl == 'null') {
+                                                urlObject.url_nurl = urlObject.url_id;
+                                            } else {
+                                                urlObject.url_nurl = urlObject.url_id + '-' + urlObject.url_nurl;
+                                            }
+                                            
+                                            var urlo = new Url(urlObject);
+                                            urlo.save(dbo, function(resdb) {
+                                                if(resdb) {
+                                                    res.status(200).send({status: true});
+                                                } else {
+                                                    res.status(200).send({status: false, err: 'Server error'});
+                                                }
+                                            })
                                         }
-                                    })
+                                    })   
                                 }
-                            })   
-                        }
-                        
-                        createUrl();
+                                
+                                createUrl();
+                            } else {
+                                res.status(200).send({status: false, err: 'Reached limit of urls, 14.'});
+                            }
+                        })
                     }
                 })
             } else {
-                res.send(200).status({status: false, err: 403});
+                res.send(200).status({status: false, err: 'Not authorized'});
             }
         })
     } else {
         res.status(200).send({status: false, err: 408});
     }
-    console.log(urlObject)
 }
 module.exports.visit = function(req, res) {
     var urlr = url.parse(req.url, true);
@@ -105,7 +110,7 @@ module.exports.visit = function(req, res) {
     ) {
         mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
             if(err) {
-                res.status(200).send({status: false, err: 500});
+                res.status(200).send({status: false, err: 'Server error'});
             } else {
                 dbo = db.db('fannstdb-url-shortener');
 
@@ -179,5 +184,60 @@ module.exports.visit = function(req, res) {
         })
     } else {
         res.redirect(307, '/');
+    }
+}
+module.exports.viewUrl = function(req, res) {
+    var urlr = url.parse(req.url, true);
+    var query = urlr.query;
+
+    // Gets data
+    var url_id = query.url_id;
+    // Checks if data is set
+    if(
+        url_id!=undefined
+    ) {
+        userController.userCheck(req, res, function(user) {
+            if(user) {
+                mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
+                    if(err) {
+                        res.status(200).send({status: false, err: 'Server error'});
+                    } else {
+                        dbo = db.db('fannstdb-url-shortener');
+
+                        Url.fetchById(dbo, url_id, function(url) {
+                            if(url) {
+                                if(url.url_hid == user.user_hid) {
+                                    dbo.collection('url_shortener_his').find({
+                                        his_id: url_id
+                                    }).limit(20).toArray(function(err, his) {
+                                        if(err) {
+                                            res.send('Server error');
+                                            res.end();
+                                        } else {
+                                            res.render('url-shortener/request/overlay-viewurl.ejs', {
+                                                url: url,
+                                                his: his
+                                            })
+                                        }
+                                    })
+                                } else {
+                                    res.send('Not authorized');
+                                    res.end();
+                                }
+                            } else {
+                                res.send('Url not found');
+                                res.end();
+                            }
+                        })
+                    }
+                })
+            } else {
+                res.send('Not authorized');
+                res.end();
+            }
+        });
+    } else {
+        res.send('Invalid informaton entered');
+        res.end();
     }
 }

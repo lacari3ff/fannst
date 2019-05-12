@@ -1,11 +1,103 @@
-.overlay {
-    background-color: #00000022;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 10000;
+.urls {
     text-align: left;
+    display: inline-table;
 }
 
+.urls > div {
+    padding: 8px;
+}
+
+.urls > div > span {
+    font-size: 14px;
+    text-align: left;
+    font-family: sans-serif;
+}
+
+.urls > div > span:nth-child(1) {
+    width: 150px;
+    display: inline-table;
+}
+
+.urls > div > span:nth-child(2) {
+    width: 500px;
+    display: inline-table;
+}
+
+.urls > div > span:nth-child(3) {
+    width: 150px;
+    display: inline-table;
+}
+
+.urls > hr {
+    border: none;
+    border-bottom: 1px solid #D9DBDF;
+}
+
+.urls > ul {
+    padding: 0;
+    list-style: none;
+}
+
+.urls > ul > li > span {
+    vertical-align: middle;
+}
+
+.urls > ul > li {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.urls > ul > li > span:nth-child(1) {
+    width: 150px;
+    display: inline-table;
+    font-size: 14px;
+}
+
+.urls > ul > li > span:nth-child(2) {
+    width: 500px;
+    display: inline-table;
+}
+
+.urls > ul > li > span:nth-child(2) > a {
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.urls > ul > li > span:nth-child(2) > a:hover {
+    text-decoration: underline;
+}
+
+.urls > ul > li > span:nth-child(3) {
+    width: 150px;
+    display: inline-table;
+}
+
+.urls > ul > li > span:nth-child(3) > p {
+    margin: 0;
+    font-size: 13px;
+    display: inline-table;
+    background-color: #DFDFDF;
+    padding: 4px;
+    border-radius: 5px;
+}
+
+.urls > ul > li > span:nth-child(4) {
+    display: inline-table;
+}
+
+.urls > ul > li > span:nth-child(4) > button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.urls > ul > li > span:nth-child(4) > button > img {
+    width: 8px;
+}
+
+.urls > p {
+    font-size: 12px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: #5F6368;
+}

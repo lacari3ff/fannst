@@ -1,0 +1,54 @@
+<div class="overlay-viewurl">
+    <% if(url.url_edata == 'true') { %>
+        <h3>History</h3>
+        <hr>
+        <div class="overlay-viewurl-history">
+            <div>
+                <% his.forEach(function(item) { %>
+                    <div>
+                        <p><%= item.his_cdate %></p>
+                        <ol>
+                            <% item.his_his.forEach(function(hisItem) { %>
+                                <li class="overlay-viewurl-history-item">
+                                    <div>Device: <%= hisItem.his_device %></div>
+                                    <div>Ip: <a target="_BLANK" href="https://www.ip-tracker.org/locator/ip-lookup.php?ip=<%= hisItem.his_ip %>"><%= hisItem.his_ip %></a></div>
+                                    <div>Time: <%= hisItem.his_date %> Minutes</div>
+                                </li>
+                            <% }) %>
+                        </ol>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    <% } %>
+    <h3>Edit url: <%= url.url_nme %></h3>
+    <hr>
+    <form onsubmit="return false" id="overlay-createurl-form">
+        <div class="overlay-item-input-inline">
+            <span class="input-inline">
+                <input class="input-inline-in input-inline-in" type="text" required max="256" placeholder="" id="url_nme">
+                <div>Name</div>
+            </span>
+            <span class="input-inline">
+                <input class="input-inline-in" type="text" max="256" required placeholder="" id="url_url">
+                <div>Original URL</div>
+            </span>
+            <br>
+            <div class="input">
+                <input class="input-in" type="text" max="256" required placeholder="" id="url_nurl">
+                <div>Custom URL (Empty for auto generated)</div>
+            </div>
+            <br><br>
+            <div class="checkbox">
+                <span>
+                    <input type="checkbox" id="url_edata" checked>
+                </span>
+                <span>Store IP & Other data</span>
+            </div>
+            <div class="overlay-button-inline">
+                <button type="button" class="button-text" onclick="overlay_closeview()">Close</button>
+                <button type="button" class="button" onclick="create_url()">Update</button>
+            </div>
+        </div>
+    </form>
+</div>

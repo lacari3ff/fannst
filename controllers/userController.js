@@ -34,7 +34,7 @@ module.exports.createUser = function(req, res) {
     ) {
         mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
             if(err) {
-                res.status(200).send({status: false, err: 500});
+                res.status(200).send({status: false, err: 'Server error'});
             } else {
                 dbo = db.db('fannstdb');
 
@@ -50,11 +50,11 @@ module.exports.createUser = function(req, res) {
                                     // Secures password
                                     bcrypt.genSalt(10, function(err, salt) {
                                         if(err) {
-                                            res.status(200).send({status: false, err: 500});
+                                            res.status(200).send({status: false, err: 'Server error'});
                                         } else {
                                             bcrypt.hash(userObject.user_pass, salt, function(err, hash) {
                                                 if(err) {
-                                                    res.status(200).send({status: false, err: 500});
+                                                    res.status(200).send({status: false, err: 'Server error'});
                                                 } else {
                                                     userObject.user_pass = hash;
                                                     var user = new User(userObject);
@@ -62,7 +62,7 @@ module.exports.createUser = function(req, res) {
                                                         if(cb) {
                                                             res.status(200).send({status: true});
                                                         } else {
-                                                            res.status(200).send({status: false, err: 500});
+                                                            res.status(200).send({status: false, err: 'Server error'});
                                                         }
                                                     })
                                                 }
@@ -122,7 +122,7 @@ module.exports.signinValidate = function(req, res) {
     ) {
         mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
             if(err) {
-                res.status(200).send({status: false, err: 500});
+                res.status(200).send({status: false, err: 'Server error'});
             } else {
                 dbo = db.db('fannstdb');
 
@@ -154,7 +154,7 @@ module.exports.signIn = function(req, res) {
     ) {
         mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
             if(err) {
-                res.status(200).send({status: false, err: 500});
+                res.status(200).send({status: false, err: 'Server error'});
             } else {
                 dbo = db.db('fannstdb');
 
@@ -162,7 +162,7 @@ module.exports.signIn = function(req, res) {
                     if(resdb) {
                         bcrypt.compare(userObject.user_pass, resdb.user_pass, function(err, match) {
                             if(err) {
-                                res.status(200).send({status: false, err: 500});
+                                res.status(200).send({status: false, err: 'Server error'});
                             } else {
                                 console.log(match)
                                 if(match) {
@@ -189,7 +189,7 @@ module.exports.signIn = function(req, res) {
                                             );
                                             res.status(200).send({status: true});
                                         } else {
-                                            res.status(200).send({status: false, err: 500});
+                                            res.status(200).send({status: false, err: 'Server error'});
                                         }
                                     })
                                 } else {
@@ -220,7 +220,7 @@ module.exports.userCheck = function(req, res, cb) {
     ) {
         mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
             if(err) {
-                res.status(200).send({status: false, err: 500});
+                res.status(200).send({status: false, err: 'Server error'});
             } else {
                 dbo = db.db('fannstdb');
 

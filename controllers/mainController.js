@@ -11,11 +11,11 @@ module.exports.visitTdata = function(req, res) {
     ) {
         mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
             if(err) {
-                res.status(200).send({status: false, err: 'Server error'});
+                // Future error page
             } else {
                 dbo = db.db('fannstdb');
 
-                userController.userCheck(req, res, function(user) {
+                userController.userCheck(req, res, db, function(user) {
                     if(user) {
                         var date = new Date();
                         var cdate = date.getHours() + ' ' + date.getDay() + ' ' + + date.getFullYear();

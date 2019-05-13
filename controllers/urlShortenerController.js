@@ -10,12 +10,12 @@ const userController = require('../controllers/userController.js');
 const Url = require('../models/urls/urlModel');
 // Exports
 module.exports.start = function(req, res) {
-    userController.userCheck(req, res, function(user) {
-        if(user) {
-            mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
-                if(err) {
-                    res.redirect(307, '/');
-                } else {
+    mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
+        if(err) {
+            // Future error page
+        } else {
+            userController.userCheck(req, res, db, function(user) {
+                if(user) {
                     dbo = db.db('fannstdb-url-shortener');
                     
                     Url.fetchByHid(dbo, user.user_hid, function(urls) {
@@ -25,13 +25,14 @@ module.exports.start = function(req, res) {
                             urls: urls
                         })  
                     })
+                } else {
+                    res.redirect(307, '/signin?service=url-shortener?url=start')
                 }
             })
-        } else {
-            res.redirect(307, '/signin?service=url-shortener?url=start')
         }
     })
 }
+
 module.exports.removeUrl = function(req, res) {
     // Gets data
     var url_id = req.body.url_id;
@@ -39,12 +40,12 @@ module.exports.removeUrl = function(req, res) {
     if(
         url_id != undefined
     ) {
-        userController.userCheck(req, res, function(user) {
-            if(user) {
-                mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
-                    if(err) {
-                        res.status(200).send({status: false, err: 'Server error'});
-                    } else {
+        mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
+            if(err) {
+                // Future error page
+            } else {
+                userController.userCheck(req, res, db, function(user) {
+                    if(user) {
                         dbo = db.db('fannstdb-url-shortener');
 
                         Url.fetchById(dbo, url_id, function(url) {
@@ -74,12 +75,12 @@ module.exports.removeUrl = function(req, res) {
                                 res.status(200).send({status: false, err: 'Url not found'});
                             }
                         })
+                    } else {
+                        res.status(200).send({status: false, err: 'Not authorized'});
                     }
-                })
-            } else {
-                res.status(200).send({status: false, err: 'Not authorized'});
+                });
             }
-        });
+        })
     }
 }
 module.exports.createUrl = function(req, res) {
@@ -96,12 +97,12 @@ module.exports.createUrl = function(req, res) {
         urlObject.url_nurl!=undefined&&
         urlObject.url_edata!=undefined
     ) {
-        userController.userCheck(req, res, function(user) {
-            if(user) {
-                mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
-                    if(err) {
-                        res.status(200).send({status: false, err: 'Server error'});
-                    } else {
+        mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
+            if(err) {
+                // Future error page
+            } else {
+                userController.userCheck(req, res, db, function(user) {
+                    if(user) {
                         dbo = db.db('fannstdb-url-shortener');
 
                         Url.fetchByHid(dbo, user.user_hid, function(urls) {
@@ -116,7 +117,7 @@ module.exports.createUrl = function(req, res) {
                                             urlObject.url_id = url_id;
                                             urlObject.url_cdate = dateTool.genDate(['d', 'M', 'y']);
                                             urlObject.url_hid = user.user_hid;
-        
+                
                                             if(urlObject.url_nurl == 'null') {
                                                 urlObject.url_nurl = urlObject.url_id;
                                             } else {
@@ -140,10 +141,10 @@ module.exports.createUrl = function(req, res) {
                                 res.status(200).send({status: false, err: 'Reached limit of urls, 14.'});
                             }
                         })
+                    } else {
+                        res.send(200).status({status: false, err: 'Not authorized'});
                     }
                 })
-            } else {
-                res.send(200).status({status: false, err: 'Not authorized'});
             }
         })
     } else {
@@ -250,12 +251,12 @@ module.exports.viewUrl = function(req, res) {
     if(
         url_id!=undefined
     ) {
-        userController.userCheck(req, res, function(user) {
-            if(user) {
-                mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
-                    if(err) {
-                        res.status(200).send({status: false, err: 'Server error'});
-                    } else {
+        mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
+            if(err) {
+                // Future error page
+            } else {
+                userController.userCheck(req, res, db, function(user) {
+                    if(user) {
                         dbo = db.db('fannstdb-url-shortener');
 
                         Url.fetchById(dbo, url_id, function(url) {
@@ -283,13 +284,14 @@ module.exports.viewUrl = function(req, res) {
                                 res.end();
                             }
                         })
+                    } else {
+                        res.send('Not authorized');
+                        res.end();
                     }
-                })
-            } else {
-                res.send('Not authorized');
-                res.end();
+                });
+            
             }
-        });
+        })
     } else {
         res.send('Invalid informaton entered');
         res.end();

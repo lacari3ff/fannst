@@ -1,0 +1,137 @@
+/* normal input */
+
+.input {
+    position: relative;
+    display: inline-table;
+    width: 400px;
+    margin-bottom: 38px;
+}
+
+.input-in {
+    position: absolute;
+    border: none;
+    background: none;
+    outline: none;
+    /* sets the style */
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #D9DBDF;
+    transition: .1s;
+    box-shadow: 0px 0px 0px 2px #fff inset;
+    width: 375px;
+    height: 22px;
+}
+
+.input-in:focus {
+    transition: .1s;
+    box-shadow: 0px 0px 0px 2px #2076E3 inset;
+}
+
+.input-in:focus + div {
+    transform: translateY(-20%);
+    background-color: #fff;
+    transition: .1s;
+    font-size: 12px;
+}
+
+.input-in:valid + div {
+    transform: translateY(-20%);
+    background-color: #fff;
+    transition: .1s;
+    font-size: 12px;
+}
+
+.input > div {
+    position: absolute;
+    pointer-events: none;
+    padding-right: 5px;
+    padding-left: 5px;
+    top: 50%;
+    left: 8px;
+    transform: translateY(50%);
+    color: #5F6368;
+    transition: .1s;
+    font-size: 15px;
+}
+
+.input-in-err {
+    position: absolute;
+    border: none;
+    background: none;
+    outline: none;
+    /* sets the style */
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #D9DBDF;
+    transition: .1s;
+    width: 375px;
+    height: 25px;
+    box-shadow: 0px 0px 0px 2px #D6312E inset;
+}
+
+.input-in-err:focus {
+    position: absolute;
+    border: none;
+    background: none;
+    outline: none;
+    /* sets the style */
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #D9DBDF;
+    transition: .1s;
+    width: 375px;
+    height: 25px;
+    box-shadow: 0px 0px 0px 2px #D6312E inset;
+}
+
+.input-in-err:valid + div {
+    transform: translateY(-20%);
+    color: #D6312E;
+    background-color: #fff;
+    transition: .1s;
+    font-size: 12px;
+}
+
+.input-in-err:focus + div {
+    transform: translateY(-20%);
+    color: #D6312E;
+    background-color: #fff;
+    transition: .1s;
+    font-size: 12px;
+}
+
+/* Buttons */
+
+.button {
+    cursor: pointer;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2076E3;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    transition: .1s;
+}
+
+.button:active {
+    transition: .2s;
+    background-color: #3868B3;
+}
+
+.checkform > form > div, button {
+    display: inline-table;
+    vertical-align: middle;
+}
+
+.checkform {
+    padding: 12px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    text-align: left;
+    background-color: #fff;
+    z-index: 100;
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.22)
+}

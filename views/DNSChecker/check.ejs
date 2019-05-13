@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>DNSChecker</title>
+        <% include ../head/main-default-head.html %>
+        <link rel="stylesheet" type="text/css" href="/style/DNSChecker/check.css">
+        <link rel="stylesheet" type="text/css" href="/style/main/profile-dropdown.css">
+        <script src="/js/main/profile-dropdown.js" defer></script>
+        <meta name="keywords" content="search, engine, service">
+        <meta name="copyright" content="Luke Rieff">
+        <meta name="description" content="A Google Like Search Engine, Build By Teens 'Fannst'.">
+    </head>
+    <body>
+        <nav>
+            <% include ../head/profile-head.ejs %>
+        </nav>
+        <main class="main">
+            <div class="checkform">
+                <form action="/DNSChecker/check" method="GET">
+                    <div class="input">
+                        <input value="<%= action %>" name="action" class="input-in" type="text" max="256" required placeholder="" id="user_email">
+                        <div>Domain</div>
+                    </div>
+                    <button class="button" type="submit">Check</button>
+                </form>
+            </div>
+            <div class="dns-details">
+                <table>
+                    <tr>
+                        <th>Information</th>
+                    </tr>
+                    <tr>
+                        <td>Family: </td>
+                        <td>IPv<%= dns.family %></td>
+                    </tr>
+                    <tr>
+                        <td>Address: </td>
+                        <td><%= dns.address %></td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <th>Hosts</th>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <th>Hostname</th>
+                    </tr>
+                    <% dns.hosts.forEach(function(host) { %>
+                        <tr>
+                            <td><%= host.address %></td>
+                            <td><%= host.host %></td>
+                        </tr>
+                    <% }) %>
+                </table>
+                <table>
+                    <tr>
+                        <th>Records</th>
+                    </tr>
+                    <tr>
+                        <th>Type</th>
+                        <th>Value</th>
+                        <th>Address</th>
+                        <th>Exchange</th>
+                        <th>NSname</th>
+                        <th>Hostmaster</th>
+                        <th>MinTTL</th>
+                    </tr>
+                    <% dns.records.forEach(function(record) { %>
+                        <tr>
+                            <td><%= record.type %></td>
+                            <td><%= record.value %></td>
+                            <td><%= record.address %></td>
+                            <td><%= record.exchange %></td>
+                            <td><%= record.nsname %></td>
+                            <td><%= record.hostmaster %></td>
+                            <td><%= record.minttl %></td>
+                        </tr>
+                    <% }) %>
+                </table>
+            </div>
+            <% include ../head/loader.html %>
+        </main>
+    </body>
+</html>

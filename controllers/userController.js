@@ -207,7 +207,7 @@ module.exports.signIn = function(req, res) {
         res.status(200).send({status: false, err: 408});
     }
 }
-module.exports.userCheck = function(req, res, cb) {
+module.exports.userCheck = function(req, res, db, cb) {
     // Gets data
     var logObject = {
         log_key: req.cookies.csrftoken,
@@ -218,27 +218,21 @@ module.exports.userCheck = function(req, res, cb) {
         logObject.log_key!=undefined&&
         logObject.log_hid!=undefined
     ) {
-        mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
-            if(err) {
-                res.status(200).send({status: false, err: 'Server error'});
-            } else {
-                dbo = db.db('fannstdb');
+        dbo = db.db('fannstdb');
 
-                Log.fetchLog(dbo, logObject, function(log) {
-                    if(log) {
-                        User.fetchByHid(dbo, log.log_hid, function(user) {
-                            if(user) {
-                                cb(user);
-                            } else {
-                                resetCookies(res);
-                                cb(false);
-                            }
-                        })
+        Log.fetchLog(dbo, logObject, function(log) {
+            if(log) {
+                User.fetchByHid(dbo, log.log_hid, function(user) {
+                    if(user) {
+                        cb(user);
                     } else {
                         resetCookies(res);
                         cb(false);
                     }
                 })
+            } else {
+                resetCookies(res);
+                cb(false);
             }
         })
     } else {

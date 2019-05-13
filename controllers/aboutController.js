@@ -5,15 +5,21 @@ const url = require('url');
 const userController = require('../controllers/userController.js');
 // Exports
 module.exports.index = function(req, res) {
-    userController.userCheck(req, res, function(user) {
-        if(user) {
-            res.render('about/index', {
-                rtype: 1,
-                user: user
-            })
+    mongodb.connect('mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb', { useNewUrlParser: true }, function(err, db) {
+        if(err) {
+            // Future error page
         } else {
-            res.render('about/index', {
-                rtype: 0
+            userController.userCheck(req, res, db, function(user) {
+                if(user) {
+                    res.render('about/index', {
+                        rtype: 1,
+                        user: user
+                    })
+                } else {
+                    res.render('about/index', {
+                        rtype: 0
+                    })
+                }
             })
         }
     })

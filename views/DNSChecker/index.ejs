@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>DNSChecker</title>
+        <% include ../head/main-default-head.html %>
+        <link rel="stylesheet" type="text/css" href="/style/DNSChecker/start.css">
+        <link rel="stylesheet" type="text/css" href="/style/main/profile-dropdown.css">
+        <script src="/js/main/profile-dropdown.js" defer></script>
+        <meta name="keywords" content="search, engine, service">
+        <meta name="copyright" content="Luke Rieff">
+        <meta name="description" content="A Google Like Search Engine, Build By Teens 'Fannst'.">
+    </head>
+    <body>
+        <nav>
+            <% include ../head/profile-head.ejs %>
+        </nav>
+        <main>
+            <div class="checkform">
+                <form action="/DNSChecker/check" method="GET">
+                    <div class="input">
+                        <input name="action" class="input-in" type="text" max="256" required placeholder="" id="user_email">
+                        <div>Domain</div>
+                    </div>
+                    <button class="button" type="submit">Check</button>
+                </form>
+            </div>
+            <% include ../head/loader.html %>
+        </main>
+    </body>
+</html>
